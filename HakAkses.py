@@ -1,6 +1,6 @@
 from enum import Enum
 
 class HakAkses(Enum):
-    ADMINISTRATOR = 1
-    APOTEKER = 2
-    DOKTER = 3
+    RESEPSIONIS = 1
+    DOKTER = 2
+    APOTEKER = 3

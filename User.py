@@ -1,4 +1,4 @@
-class Login:
+class User:
 
     def __init__(self, username, password):
         self.__username = username
@@ -20,5 +20,5 @@ class Login:
     def password(self, password):
         self.__password = password
 
-    def verifyLogin(self, username, password):
+    def verifyUser(self, username, password) -> bool:
         pass

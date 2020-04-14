@@ -1,14 +1,13 @@
 from Person import Person
 
-class Dokter(Person):
+class Apoteker(Person):
 
-    def __init__(self, nama, alamat, jenisKelamin, noTelp, status, spesialis = []):
+    def __init__(self, nama, alamat, jenisKelamin, noTelp, status):
         self.__nama = nama
         self.__alamat = alamat
         self.__jenisKelamin = jenisKelamin
         self.__noTelp = noTelp
         self.__status = status
-        self.__spesialis = spesialis
     
     @property
     def nama(self):
@@ -50,10 +49,5 @@ class Dokter(Person):
     def status(self, status):
         self.__status = status
 
-    @property
-    def spesialis(self):
-        return self.__spesialis
-
-    @spesialis.setter
-    def spesialis(self, spesialis = []):
-        self.__spesialis = spesialis
+    def laporanObatnAlkes(self, date):
+        pass
