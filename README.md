@@ -2,7 +2,7 @@
 Public Health Center App Using Python OOP Concept.
 
 # Nama Kelompok
-1. Moh. Fahmi
+1. Mohammad Fahmi
 2. Pramana Ade P
 3. Risque Nugraha
 4. Sakti Pujo E
