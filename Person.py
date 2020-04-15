@@ -17,7 +17,3 @@ class Person(ABC):
     @abstractproperty
     def noTelp(self):
         pass
-
-    @abstractproperty
-    def status(self):
-        pass
