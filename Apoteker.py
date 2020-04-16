@@ -2,12 +2,11 @@ from Person import Person
 
 class Apoteker(Person):
 
-    def __init__(self, nama, alamat, jenisKelamin, noTelp, status, nip):
+    def __init__(self, nama, alamat, jenisKelamin, noTelp, nip):
         self.__nama = nama
         self.__alamat = alamat
         self.__jenisKelamin = jenisKelamin
         self.__noTelp = noTelp
-        self.__status = status
         self.__nip = nip 
 
     @property
@@ -41,14 +40,6 @@ class Apoteker(Person):
     @noTelp.setter
     def noTelp(self, noTelp):
         self.__noTelp = noTelp
-
-    @property
-    def status(self):
-        return self.__status
-
-    @status.setter
-    def status(self, status):
-        self.__status = status
 
     @property
     def nip(self):

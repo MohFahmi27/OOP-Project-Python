@@ -2,12 +2,11 @@ from Person import Person
 
 class Dokter(Person):
 
-    def __init__(self, nama, alamat, jenisKelamin, noTelp, status, spesialis = []):
+    def __init__(self, nama, alamat, jenisKelamin, noTelp, spesialis = []):
         self.__nama = nama
         self.__alamat = alamat
         self.__jenisKelamin = jenisKelamin
         self.__noTelp = noTelp
-        self.__status = status
         self.__spesialis = spesialis
     
     @property
@@ -43,17 +42,15 @@ class Dokter(Person):
         self.__noTelp = noTelp
 
     @property
-    def status(self):
-        return self.__status
-
-    @status.setter
-    def status(self, status):
-        self.__status = status
-
-    @property
     def spesialis(self):
         return self.__spesialis
 
     @spesialis.setter
     def spesialis(self, spesialis = []):
         self.__spesialis = spesialis
+    
+    def __str__(self):
+        return "Nama Dokter : {} \nAlamat Dokter : {} \nJenis Kelamin : {} \nNo Telp : {} \nSpesialis : {}".format(self.__nama,self.__alamat,self.__jenisKelamin, self.__noTelp,self.__spesialis)
+
+# d = Dokter("nama","di bumi","laki-laki","noTelp",['Paru-Paru'])
+# print(d)

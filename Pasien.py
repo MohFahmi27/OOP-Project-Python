@@ -61,6 +61,8 @@ class Pasien(Person):
     def cetakKartu(self):
         return self.nama
 
-# p = Pasien("nama","alamat","laki","08123123","12312313","123123123")
-# print(p.nama)
+    def __str__(self):
+        return "Nama Pasien : {} \nAlamat Pasien : {} \nJenis Kelamin : {} \nNo Telp : {} \nNo KK: {} \nNo KTP : {}".format(self.__nama,self.__alamat,self.__jenisKelamin, self.__noTelp,self.__noKK,self.__noKtp)
 
+# p = Pasien("nama","alamat","laki","08123123","12312313","123123123")
+# print(p)
