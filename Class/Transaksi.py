@@ -1,4 +1,4 @@
-from Pasien import Pasien
+from Class.Pasien import Pasien
 
 class Transaksi():
 

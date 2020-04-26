@@ -2,6 +2,7 @@ from Class.HakAkses import HakAkses
 from db.Orm.UserOrm import UserOrm
 from db.base import sessionFactory
 
+
 class User:
 
     def __init__(self, username, password, HakAkses):
@@ -12,7 +13,7 @@ class User:
     @property
     def username(self):
         return self.__username
-    
+
     @username.setter
     def username(self, username):
         self.__username = username
@@ -63,8 +64,8 @@ class User:
             newPassword = input("Masukkan Password Baru: ")
             session = sessionFactory()
             session.query(UserOrm).filter_by(id=idUser).update({
-                UserOrm.password:newPassword
-            }, synchronize_session = False)
+                UserOrm.password: newPassword
+            }, synchronize_session=False)
             session.commit()
             session.close()
         except Exception as e:
@@ -77,7 +78,9 @@ class User:
         try:
             session = sessionFactory()
             for user in session.query(UserOrm).all():
-                print("Id User = {}, Username = {}, Password = {}, Hak Akses = {}".format(user.id, user.username, user.password, user.hak_akses))
+                print("Id User = {}, Username = {}, Password = {}, Hak Akses = {}".format(user.id, user.username,
+                                                                                          user.password,
+                                                                                          user.hak_akses))
             session.close()
         except Exception as e:
             print("===>", e)
@@ -100,4 +103,3 @@ class User:
 # User.updateUserPass(3)
 # print(User.verifyUser("admin","admin"))
 # User.showUser()
-

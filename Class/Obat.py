@@ -1,4 +1,4 @@
-from JenisObat import JenisObat
+from Class.JenisObat import JenisObat
 class Obat():
 
     def __init__(self, JenisObat, namaObat):
