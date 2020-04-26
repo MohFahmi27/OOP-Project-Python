@@ -1,4 +1,6 @@
 from HakAkses import HakAkses
+# from ..database.base import sessionFactory
+# from ..database.Orm.UserOrm import UserOrm
 
 class User:
 
@@ -30,9 +32,8 @@ class User:
     @hakAkses.setter
     def hakAkses(self, HakAkses):
         self.__hakAkses = HakAkses
-
+  
     def verifyUser(self, username, password) -> bool:
         pass
 
-# admin = User("admin","admin",HakAkses(1))
-# print(admin.hakAkses)
+# admin = User("admin","admin",HakAkses(1).name)
