@@ -14,10 +14,3 @@ class UserOrm(Base):
         self.username = username
         self.password = password
         self.hak_akses = hak_akses
-
-    def deleteUser(self):
-        pass
-
-# session = sessionFactory()
-# for i in session.query(UserOrm).order_by(UserOrm.id):
-#     print(i.username, i.password, i.hak_akses)
