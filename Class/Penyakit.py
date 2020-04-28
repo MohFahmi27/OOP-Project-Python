@@ -10,6 +10,9 @@ class Penyakit:
         self.__namaPenyakit = namaPenyakit
         self.__gejala = gejala
 
+    '''
+    I'm kinda want this property from csv file.
+    '''
     @property
     def kodePenyakit(self):
         return self.__kodePenyakit
