@@ -77,7 +77,7 @@ class Apoteker(Person):
             print("Data Berhasil Dihapus!")
 
     @staticmethod
-    def updateDokter(idDokter):
+    def updateApoteker(idApoteker):
         try:
             newNama = input("Masukkan Nama Baru: ")
             newalamat = input("Masukkan Alamat Baru: ")
@@ -85,7 +85,7 @@ class Apoteker(Person):
             newNoTelp = input("Masukkan No Telp Baru: ")
             newnip = input("Masukkkan Spesialis Baru")
             session = sessionFactory()
-            session.query(ApotekerOrm).filter_by(id=idDokter).update({
+            session.query(ApotekerOrm).filter_by(id=idApoteker).update({
                 ApotekerOrm.namaDokter: newNama, ApotekerOrm.alamatDokter: newalamat,
                 ApotekerOrm.jenisKelamin: newjenisKelamin, ApotekerOrm.noTelpApoteker: newNoTelp,
                 ApotekerOrm.NIP: newnip
@@ -98,12 +98,12 @@ class Apoteker(Person):
             print("Data Berhasil DiUpdate!")
 
     @staticmethod
-    def showDokter():
+    def showApoteker():
         try:
             session = sessionFactory()
             for apoteker in session.query(ApotekerOrm).all():
                 print(
-                    "Id Pasien = {}\nNama = {}\nAlamat = {}\nJenis Kelamin= {}\nNo Telp = {}\nSpesialis = {}\n===================="
+                    "Id Apoteker = {}\nNama = {}\nAlamat = {}\nJenis Kelamin= {}\nNo Telp = {}\nNIP = {}\n===================="
                         .format(apoteker.id, apoteker.namaApoteker, apoteker.alamatApoteker, apoteker.jenisKelamin,
                                 apoteker.noTelpApoteker, apoteker.NIP))
             session.close()
