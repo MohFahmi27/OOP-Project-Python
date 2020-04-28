@@ -97,7 +97,7 @@ class User:
         except Exception as e:
             print("===>", e)
 
-# admin = User("Dokter","kolamikan10",HakAkses(3).name)
+# admin = User("Dokter2","kolamikan10",HakAkses.DOKTER)
 # admin.insertUser()
 # User.deleteUser("Dokter")
 # User.updateUserPass(3)

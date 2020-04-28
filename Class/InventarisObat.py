@@ -39,7 +39,7 @@ class InventarisObat():
             print("===>", e)
 
 
-# paracetamol = Obat(JenisObat(1).name, "Paracetamol")
+# paracetamol = Obat(JenisObat.SERBUK, "PuyerWal")
 # paracetamol.insertObat()
 # Obat.showObat()
 # inventarisObat1 = InventarisObat(2, 2, 50_000, "dirak nomor 2")

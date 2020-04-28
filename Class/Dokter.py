@@ -1,3 +1,4 @@
+from Class.JenisKelamin import JenisKelamin
 from Class.Person import Person
 from db.base import sessionFactory
 from db.Orm.DokterOrm import DokterOrm
@@ -116,8 +117,8 @@ class Dokter(Person):
             self.__nama, self.__alamat, self.__jenisKelamin, self.__noTelp, self.__spesialis)
 
 
-# d = Dokter("Rizal", "di bumi", "laki-laki", "noTelp", "corona")
-# # print(d)
+# d = Dokter("Rizal", "di bumi", JenisKelamin.LAKI_LAKI, "noTelp", "corona")
+# print(d)
 # d.insertDokter()
-# Dokter.deleteDokter(1)
+# Dokter.deleteDokter(4)
 # Dokter.showDokter()

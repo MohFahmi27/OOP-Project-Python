@@ -1,6 +1,6 @@
-from sqlalchemy import Column, String, Integer, Text
-from db.base import Base, sessionFactory
-from Class.HakAkses import HakAkses
+from sqlalchemy import Column, String, Integer, Text, Enum
+from Class.JenisKelamin import JenisKelamin
+from db.base import Base
 
 
 class ApotekerOrm(Base):
@@ -9,7 +9,7 @@ class ApotekerOrm(Base):
     id = Column(Integer, primary_key=True)
     namaApeteker = Column(String)
     alamatApoteker = Column(Text)
-    jenisKelamin = Column(String)
+    jenisKelamin = Column(Enum(JenisKelamin))
     noTelpApoteker = Column(String)
     NIP = Column(String)
 

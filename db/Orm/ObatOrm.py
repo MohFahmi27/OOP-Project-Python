@@ -1,13 +1,13 @@
-from sqlalchemy import Column, String, Integer
-from db.base import Base, sessionFactory
+from sqlalchemy import Column, String, Integer, Enum
+from Class.JenisObat import JenisObat
+from db.base import Base
 from sqlalchemy.orm import relationship
-from Class.HakAkses import HakAkses
 
 class ObatOrm(Base):
     __tablename__ = 'obat'
 
     id = Column(Integer, primary_key = True)
-    jenisObat = Column(String)
+    jenisObat = Column(Enum(JenisObat))
     namaObat = Column(String)
     inventaris_obat = relationship("InventarisObatOrm", uselist=False, backref="obat")
 

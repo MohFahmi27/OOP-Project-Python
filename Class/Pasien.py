@@ -1,3 +1,4 @@
+from Class.JenisKelamin import JenisKelamin
 from Class.Person import Person
 from db.Orm.PasienOrm import PasienOrm
 from db.base import sessionFactory
@@ -128,7 +129,7 @@ class Pasien(Person):
         return "Nama Pasien : {} \nAlamat Pasien : {} \nJenis Kelamin : {} \nNo Telp : {} \nNo KK: {} \nNo KTP : {}".format(
             self.__nama, self.__alamat, self.__jenisKelamin, self.__noTelp, self.__noKK, self.__noKtp)
 
-# pasien = Pasien("Spyan", "Di Langit Ke 2", "Laki-Laki", "08123123", "12312313", "123123123")
+# pasien = Pasien("Spyan", "Di Langit Ke 2", JenisKelamin.LAKI_LAKI, "08123123", "12312313", "123123123")
 # print(pasien)
 # pasien.insertPasien()
-Pasien.showPasien()
+# Pasien.showPasien()
