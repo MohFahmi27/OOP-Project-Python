@@ -1,5 +1,5 @@
-from sqlalchemy import Column, String, Integer
-from db.base import Base, sessionFactory
+from sqlalchemy import Column, String, Integer, Enum
+from db.base import Base
 from Class.HakAkses import HakAkses
 
 class UserOrm(Base):
@@ -8,7 +8,7 @@ class UserOrm(Base):
     id = Column(Integer, primary_key = True)
     username = Column(String, unique=True)
     password = Column(String)
-    hak_akses = Column(String)
+    hak_akses = Column(Enum(HakAkses))
 
     def __init__(self, username, password, hak_akses):
         self.username = username

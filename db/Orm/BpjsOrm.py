@@ -13,3 +13,7 @@ class BpjsOrm(Base):
         self.kodeKartu = kodeKartu
         self.kelasFasilitas = kelasFasilitas
         self.namaPeserta = namaPeserta
+
+    @staticmethod
+    def insertBpjs():
+        pass
