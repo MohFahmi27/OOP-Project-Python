@@ -15,30 +15,6 @@ class InventarisObat():
         self.hargaObat = hargaObat
         self.lokasi = lokasi
 
-    def insertInventarisObat(self):
-        try:
-            session = sessionFactory()
-            inventarisObatOrm = InventarisObatOrm(self.idobat, self.stockObat, self.expObat, self.hargaObat,
-                                                  self.lokasi)
-            session.add(inventarisObatOrm)
-            session.commit()
-            session.close()
-        except Exception as e:
-            print("===>", e)
-        else:
-            print("Data Berhasil Disimpan!")
-
-    @staticmethod
-    def showInventarisObat():
-        try:
-            session = sessionFactory()
-            for inv in session.query(InventarisObatOrm).all():
-                print("Id = {}\nId Obat = {}\nStock = {}\nTgl Exp = {}\nHarga = {}\nLokasi Obat = {}"
-                      .format(inv.id, inv.idObat, inv.stockObat, inv.expObat, inv.hargaObat, inv.lokasi))
-        except Exception as e:
-            print("===>", e)
-
-
 # paracetamol = Obat(JenisObat.SERBUK, "PuyerWal")
 # paracetamol.insertObat()
 # Obat.showObat()

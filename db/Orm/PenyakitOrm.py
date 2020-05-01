@@ -1,10 +1,11 @@
 from sqlalchemy import Column, String, Integer, Text
-from db.base import Base
+from db.base import Base, sessionFactory
+
 
 class PenyakitOrm(Base):
     __tablename__ = 'penyakit'
 
-    id = Column(Integer, primary_key = True)
+    id = Column(Integer, primary_key=True)
     kodePenyakit = Column(String)
     kelompokPenyakit = Column(String)
     namaPenyakit = Column(String)
@@ -15,3 +16,30 @@ class PenyakitOrm(Base):
         self.kelompokPenyakit = kelompokPenyakit
         self.namaPenyakit = namaPenyakit
         self.gejala = gejala
+
+    @staticmethod
+    def showPenyakit():
+        try:
+            session = sessionFactory()
+            for penyakit in session.query(PenyakitOrm).all():
+                print(
+                    "Id Penyakit = {}\nKode Penyakit = {}\nKelompok Penyakit = {}"
+                    "\nNama Penyakit= {}\nGejala = {}\n===================="
+                        .format(penyakit.id, penyakit.kodePenyakit, penyakit.kelompokPenyakit,
+                                penyakit.namaPenyakit, penyakit.gejala))
+            session.close()
+        except Exception as e:
+            print("===>", e)
+
+    def insertPasien(self):
+        try:
+            session = sessionFactory()
+            penyakitOrm = PenyakitOrm(self.kodePenyakit, self.kelompokPenyakit,
+                                      self.namaPenyakit, self.gejala)
+            session.add(penyakitOrm)
+            session.commit()
+            session.close()
+        except Exception as e:
+            print("===>", e)
+        else:
+            print("Data Berhasil Disimpan!")

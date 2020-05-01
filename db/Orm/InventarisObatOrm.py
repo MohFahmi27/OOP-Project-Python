@@ -1,5 +1,5 @@
 from sqlalchemy import Column, String, Integer, ForeignKey, Date
-from db.base import Base
+from db.base import Base, sessionFactory
 
 
 class InventarisObatOrm(Base):
@@ -18,3 +18,26 @@ class InventarisObatOrm(Base):
         self.expObat = expObat
         self.hargaObat = hargaObat
         self.lokasi = lokasi
+
+    @staticmethod
+    def showInventarisObat():
+        try:
+            session = sessionFactory()
+            for inv in session.query(InventarisObatOrm).all():
+                print("Id = {}\nId Obat = {}\nStock = {}\nTgl Exp = {}\nHarga = {}\nLokasi Obat = {}"
+                      .format(inv.id, inv.idObat, inv.stockObat, inv.expObat, inv.hargaObat, inv.lokasi))
+        except Exception as e:
+            print("===>", e)
+
+    def insertInventarisObat(self):
+        try:
+            session = sessionFactory()
+            inventarisObatOrm = InventarisObatOrm(self.idobat, self.stockObat, self.expObat, self.hargaObat,
+                                                  self.lokasi)
+            session.add(inventarisObatOrm)
+            session.commit()
+            session.close()
+        except Exception as e:
+            print("===>", e)
+        else:
+            print("Data Berhasil Disimpan!")
