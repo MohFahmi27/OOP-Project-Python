@@ -1,7 +1,7 @@
 from Class.JenisObat import JenisObat
 from Class.Obat import Obat
-from db.Orm.InventarisObatOrm import InventarisObatOrm
-from db.base import sessionFactory
+from Database.Orm.InventarisObatOrm import InventarisObatOrm
+from Database.base import sessionFactory
 from datetime import date, timedelta
 from Class.Obat import Obat
 

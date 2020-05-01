@@ -1,6 +1,6 @@
 from Class.JenisObat import JenisObat
-from db.Orm.ObatOrm import ObatOrm
-from db.base import sessionFactory
+from Database.Orm.ObatOrm import ObatOrm
+from Database.base import sessionFactory
 
 
 class Obat():

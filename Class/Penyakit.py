@@ -1,5 +1,5 @@
-from db.Orm.PenyakitOrm import PenyakitOrm
-from db.base import sessionFactory
+from Database.Orm.PenyakitOrm import PenyakitOrm
+from Database.base import sessionFactory
 
 
 class Penyakit:

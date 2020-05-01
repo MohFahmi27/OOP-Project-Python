@@ -1,7 +1,7 @@
 from Class.JenisKelamin import JenisKelamin
 from Class.Person import Person
-from db.base import sessionFactory
-from db.Orm.DokterOrm import DokterOrm
+from Database.base import sessionFactory
+from Database.Orm.DokterOrm import DokterOrm
 
 
 class Dokter(Person):

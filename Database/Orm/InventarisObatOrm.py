@@ -1,5 +1,5 @@
 from sqlalchemy import Column, String, Integer, ForeignKey, Date
-from db.base import Base, sessionFactory
+from Database.base import Base, sessionFactory
 
 
 class InventarisObatOrm(Base):

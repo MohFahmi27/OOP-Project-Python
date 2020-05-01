@@ -1,6 +1,6 @@
 from Class.KelasBpjs import KelasBpjs
-from db.Orm.BpjsOrm import BpjsOrm
-from db.base import sessionFactory
+from Database.Orm.BpjsOrm import BpjsOrm
+from Database.base import sessionFactory
 
 
 class BPJS:

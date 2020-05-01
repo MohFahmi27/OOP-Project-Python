@@ -1,6 +1,6 @@
 from sqlalchemy import Column, ForeignKey, Integer, Date
 from Class.JenisObat import JenisObat
-from db.base import Base
+from Database.base import Base
 from sqlalchemy.orm import relationship
 
 '''

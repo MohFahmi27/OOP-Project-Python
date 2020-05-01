@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, Integer, Enum
 from Class.KelasBpjs import KelasBpjs
-from db.base import Base, sessionFactory
+from Database.base import Base, sessionFactory
 
 
 class BpjsOrm(Base):

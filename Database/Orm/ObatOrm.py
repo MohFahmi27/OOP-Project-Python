@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, Integer, Enum
 from Class.JenisObat import JenisObat
-from db.base import Base, sessionFactory
+from Database.base import Base, sessionFactory
 from sqlalchemy.orm import relationship
 
 

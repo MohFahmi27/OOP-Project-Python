@@ -1,6 +1,6 @@
 from Class.HakAkses import HakAkses
-from db.Orm.UserOrm import UserOrm
-from db.base import sessionFactory
+from Database.Orm.UserOrm import UserOrm
+from Database.base import sessionFactory
 
 
 class User:

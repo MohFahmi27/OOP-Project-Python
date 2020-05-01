@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, Integer, Text, Enum
 from Class.JenisKelamin import JenisKelamin
-from db.base import Base, sessionFactory
+from Database.base import Base, sessionFactory
 
 '''
 This Class could implement inheritance PersonOrm soon!. 

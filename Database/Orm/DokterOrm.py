@@ -1,34 +1,34 @@
 from sqlalchemy import Column, String, Integer, Text, Enum
 from Class.JenisKelamin import JenisKelamin
-from db.base import Base, sessionFactory
+from Database.base import Base, sessionFactory
 
 
-class ApotekerOrm(Base):
-    __tablename__ = 'Apoteker'
+class DokterOrm(Base):
+    __tablename__ = 'Dokter'
 
     id = Column(Integer, primary_key=True)
-    namaApeteker = Column(String)
-    alamatApoteker = Column(Text)
+    namaDokter = Column(String)
+    alamatDokter = Column(Text)
     jenisKelamin = Column(Enum(JenisKelamin))
-    noTelpApoteker = Column(String)
-    NIP = Column(String)
+    noTepDokter = Column(String)
+    spesialis = Column(String)
 
     def __init__(self, nama, alamat, jenisKelamin, noTelp, spesialis):
-        self.namaApoteker = nama
-        self.alamatApoteker = alamat
+        self.namaDokter = nama
+        self.alamatDokter = alamat
         self.jenisKelamin = jenisKelamin
-        self.noTelpApoteker = noTelp
-        self.NIP = spesialis
+        self.noTepDokter = noTelp
+        self.spesialis = spesialis
 
     @staticmethod
-    def showApoteker():
+    def showDokter():
         try:
             session = sessionFactory()
-            for apoteker in session.query(ApotekerOrm).all():
+            for dokter in session.query(DokterOrm).all():
                 print(
-                    "Id Apoteker = {}\nNama = {}\nAlamat = {}\nJenis Kelamin= {}\nNo Telp = {}\nNIP = {}\n===================="
-                        .format(apoteker.id, apoteker.namaApoteker, apoteker.alamatApoteker, apoteker.jenisKelamin,
-                                apoteker.noTelpApoteker, apoteker.NIP))
+                    "Id Pasien = {}\nNama = {}\nAlamat = {}\nJenis Kelamin= {}\nNo Telp = {}\nSpesialis = {}\n===================="
+                        .format(dokter.id, dokter.namaDokter, dokter.alamatDokter, dokter.jenisKelamin,
+                                dokter.noTepDokter, dokter.spesialis))
             session.close()
         except Exception as e:
             print("===>", e)
@@ -36,8 +36,9 @@ class ApotekerOrm(Base):
     def insertDokter(self):
         try:
             session = sessionFactory()
-            apotekerOrm = ApotekerOrm(self.__nama, self.__alamat, self.__jenisKelamin, self.__noTelp, self.__nip)
-            session.add(apotekerOrm)
+            # spesialis = ",".join(self.__spesialis)
+            dokterOrm = DokterOrm(self.nama, self.alamat, self.jenisKelamin, self.noTelp, self.spesialis)
+            session.add(dokterOrm)
             session.commit()
             session.close()
         except Exception as e:
@@ -46,18 +47,18 @@ class ApotekerOrm(Base):
             print("Data Berhasil Disimpan!")
 
     @staticmethod
-    def updateApoteker(idApoteker):
+    def updateDokter(idDokter):
         try:
             newNama = input("Masukkan Nama Baru: ")
             newalamat = input("Masukkan Alamat Baru: ")
             newjenisKelamin = input("Masukkan Jenis Kelamin Baru: ")
             newNoTelp = input("Masukkan No Telp Baru: ")
-            newnip = input("Masukkkan Spesialis Baru")
+            newSpesialis = input("Masukkkan Spesialis Baru")
             session = sessionFactory()
-            session.query(ApotekerOrm).filter_by(id=idApoteker).update({
-                ApotekerOrm.namaDokter: newNama, ApotekerOrm.alamatDokter: newalamat,
-                ApotekerOrm.jenisKelamin: newjenisKelamin, ApotekerOrm.noTelpApoteker: newNoTelp,
-                ApotekerOrm.NIP: newnip
+            session.query(DokterOrm).filter_by(id=idDokter).update({
+                DokterOrm.namaDokter: newNama, DokterOrm.alamatDokter: newalamat,
+                DokterOrm.jenisKelamin: newjenisKelamin, DokterOrm.noTelpDokter: newNoTelp,
+                DokterOrm.spesialis: newSpesialis
             }, synchronize_session=False)
             session.commit()
             session.close()
@@ -67,10 +68,10 @@ class ApotekerOrm(Base):
             print("Data Berhasil DiUpdate!")
 
     @staticmethod
-    def deleteDokter(idApoteker):
+    def deleteDokter(idDokter):
         try:
             session = sessionFactory()
-            session.query(ApotekerOrm).filter_by(id=idApoteker).delete()
+            session.query(DokterOrm).filter_by(id=idDokter).delete()
             session.commit()
             session.close()
         except Exception as e:

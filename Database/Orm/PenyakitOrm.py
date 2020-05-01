@@ -1,5 +1,5 @@
 from sqlalchemy import Column, String, Integer, Text
-from db.base import Base, sessionFactory
+from Database.base import Base, sessionFactory
 
 
 class PenyakitOrm(Base):
