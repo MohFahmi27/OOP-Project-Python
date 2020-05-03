@@ -31,11 +31,12 @@ class PenyakitOrm(Base):
         except Exception as e:
             print("===>", e)
 
-    def insertPasien(self):
+    @staticmethod
+    def insertPenyakit(penyakit):
         try:
             session = sessionFactory()
-            penyakitOrm = PenyakitOrm(self.kodePenyakit, self.kelompokPenyakit,
-                                      self.namaPenyakit, self.gejala)
+            penyakitOrm = PenyakitOrm(penyakit.kodePenyakit, penyakit.kelompokPenyakit,
+                                      penyakit.namaPenyakit, penyakit.gejala)
             session.add(penyakitOrm)
             session.commit()
             session.close()

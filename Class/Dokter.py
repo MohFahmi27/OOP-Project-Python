@@ -58,7 +58,6 @@ class Dokter(Person):
             self.__nama, self.__alamat, self.__jenisKelamin, self.__noTelp, self.__spesialis)
 
 # d = Dokter("Rizal", "di bumi", JenisKelamin.LAKI_LAKI, "noTelp", "corona")
-# print(d)
 # d.insertDokter()
 # Dokter.deleteDokter(4)
 # Dokter.showDokter()

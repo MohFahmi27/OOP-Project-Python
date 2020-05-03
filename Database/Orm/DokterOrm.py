@@ -33,11 +33,11 @@ class DokterOrm(Base):
         except Exception as e:
             print("===>", e)
 
-    def insertDokter(self):
+    @staticmethod
+    def insertDokter(dokter):
         try:
             session = sessionFactory()
-            # spesialis = ",".join(self.__spesialis)
-            dokterOrm = DokterOrm(self.nama, self.alamat, self.jenisKelamin, self.noTelp, self.spesialis)
+            dokterOrm = DokterOrm(dokter.nama, dokter.alamat, dokter.jenisKelamin, dokter.noTelp, dokter.spesialis)
             session.add(dokterOrm)
             session.commit()
             session.close()

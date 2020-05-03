@@ -27,10 +27,11 @@ class ObatOrm(Base):
         except Exception as e:
             print("===>", e)
 
-    def insertObat(self):
+    @staticmethod
+    def insertObat(obat):
         try:
             session = sessionFactory()
-            obatOrm = ObatOrm(self.__jenisObat, self.__namaObat)
+            obatOrm = ObatOrm(obat.jenisObat, obat.namaObat)
             session.add(obatOrm)
             session.commit()
             session.close()

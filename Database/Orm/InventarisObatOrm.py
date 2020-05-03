@@ -29,11 +29,13 @@ class InventarisObatOrm(Base):
         except Exception as e:
             print("===>", e)
 
-    def insertInventarisObat(self):
+    @staticmethod
+    def insertInvenObat(inventarisObat):
         try:
             session = sessionFactory()
-            inventarisObatOrm = InventarisObatOrm(self.idobat, self.stockObat, self.expObat, self.hargaObat,
-                                                  self.lokasi)
+            inventarisObatOrm = InventarisObatOrm(inventarisObat.idobat, inventarisObat.stockObat,
+                                                  inventarisObat.expObat,
+                                                  inventarisObat.hargaObat, inventarisObat.lokasi)
             session.add(inventarisObatOrm)
             session.commit()
             session.close()

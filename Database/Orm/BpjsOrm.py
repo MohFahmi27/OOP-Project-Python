@@ -28,12 +28,13 @@ class BpjsOrm(Base):
         except Exception as e:
             print("===>", e)
 
-    def insertPasien(self):
+    @staticmethod
+    def insertPasien(bpjs):
         try:
             session = sessionFactory()
-            bpjs = BpjsOrm(self.kodeKartu, self.kelasFasilitas,
-                           self.namaPeserta)
-            session.add(bpjs)
+            bpjsOrm = BpjsOrm(bpjs.kodeKartu, bpjs.kelasFasilitas,
+                              bpjs.namaPeserta)
+            session.add(bpjsOrm)
             session.commit()
             session.close()
         except Exception as e:

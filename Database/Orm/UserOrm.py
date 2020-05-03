@@ -28,10 +28,11 @@ class UserOrm(Base):
         except Exception as e:
             print("===>", e)
 
-    def insertUser(self):
+    @staticmethod
+    def insertUser(user):
         try:
             session = sessionFactory()
-            userOrm = UserOrm(self.username, self.password, self.hakAkses)
+            userOrm = UserOrm(user.username, user.password, user.hakAkses)
             session.add(userOrm)
             session.commit()
             session.close()

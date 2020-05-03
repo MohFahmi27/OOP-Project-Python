@@ -40,11 +40,12 @@ class PasienOrm(Base):
         except Exception as e:
             print("===>", e)
 
-    def insertPasien(self):
+    @staticmethod
+    def insertPasien(pasien):
         try:
             session = sessionFactory()
-            pasienOrm = PasienOrm(self.__nama, self.__alamat, self.__jenisKelamin, self.__noTelp, self.__noKK,
-                                  self.__noKtp)
+            pasienOrm = PasienOrm(pasien.nama, pasien.alamat, pasien.jenisKelamin,
+                                  pasien.noTelp, pasien.noKK, pasien.noKtp)
             session.add(pasienOrm)
             session.commit()
             session.close()
