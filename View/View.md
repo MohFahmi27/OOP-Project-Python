@@ -6,7 +6,7 @@
 
 ![LoginView Sketsa](https://github.com/MohFahmi27/PBO-Kelompok-4/blob/master/View/assets/img/SketsaLoginView.jpg)
 
-## (screen) Login
+## (screen)LoginView
 
 ![BagianLogin](https://github.com/MohFahmi27/PBO-Kelompok-4/blob/master/View/assets/img/ScreenLoginView.jpeg)
 
