@@ -10,5 +10,7 @@
 
 ![BagianLogin](https://github.com/MohFahmi27/PBO-Kelompok-4/blob/master/View/assets/img/ScreenLoginView.jpeg)
 
+## Sketsa HomeView
 
+![LoginView Sketsa](https://github.com/MohFahmi27/PBO-Kelompok-4/blob/master/View/assets/img/SketsaHomeView.jpg)
 
