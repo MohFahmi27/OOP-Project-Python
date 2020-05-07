@@ -1,9 +1,9 @@
-from Pasien import Pasien
-from Penyakit import Penyakit
-from Resep import Resep
-from Dokter import Dokter
-from Obat import Obat
-from JenisObat import JenisObat
+# from Pasien import Pasien
+# from Penyakit import Penyakit
+# from Resep import Resep
+# from Dokter import Dokter
+# from Obat import Obat
+# from JenisObat import JenisObat
 
 class RekamMedis():
 

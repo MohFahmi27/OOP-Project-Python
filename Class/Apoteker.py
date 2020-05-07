@@ -1,14 +1,15 @@
-from Person import Person
+from Class.Person import Person
+
 
 class Apoteker(Person):
 
-    def __init__(self, nama, alamat, jenisKelamin, noTelp, status):
+    def __init__(self, nama, alamat, jenisKelamin, noTelp, nip):
         self.__nama = nama
         self.__alamat = alamat
         self.__jenisKelamin = jenisKelamin
         self.__noTelp = noTelp
-        self.__status = status
-    
+        self.__nip = nip
+
     @property
     def nama(self):
         return self.__nama
@@ -16,7 +17,7 @@ class Apoteker(Person):
     @nama.setter
     def nama(self, nama):
         self.__nama = nama
-        
+
     @property
     def alamat(self):
         return self.__alamat
@@ -24,7 +25,7 @@ class Apoteker(Person):
     @alamat.setter
     def alamat(self, alamat):
         self.__alamat = alamat
-    
+
     @property
     def jenisKelamin(self):
         return self.__jenisKelamin
@@ -36,18 +37,18 @@ class Apoteker(Person):
     @property
     def noTelp(self):
         return self.__noTelp
-    
+
     @noTelp.setter
     def noTelp(self, noTelp):
         self.__noTelp = noTelp
 
     @property
-    def status(self):
-        return self.__status
+    def nip(self):
+        return self.__nip
 
-    @status.setter
-    def status(self, status):
-        self.__status = status
+    @nip.setter
+    def nip(self, nip):
+        self.__nip = nip
 
     def laporanObatnAlkes(self, date):
         pass
