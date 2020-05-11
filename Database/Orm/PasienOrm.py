@@ -1,4 +1,6 @@
-from sqlalchemy import Column, String, Integer, Text, Enum
+from sqlalchemy import Column, String, Integer, Text, Enum, Date
+from sqlalchemy.orm import relationship
+
 from Class.JenisKelamin import JenisKelamin
 from Database.base import Base, sessionFactory
 
@@ -9,21 +11,24 @@ using the inheritance feature in sqlAlchemy
 
 
 class PasienOrm(Base):
-    __tablename__ = 'Pasien'
+    __tablename__ = 'pasien'
 
     id = Column(Integer, primary_key=True)
     namaPasien = Column(String)
     alamatPasien = Column(Text)
     jenisKelamin = Column(Enum(JenisKelamin))
     noTelpPasien = Column(String)
+    tglLahir = Column(Date)
     noKk = Column(String)
     noKtp = Column(String)
+    reseps = relationship("ResepOrm", back_populates="pasien")
 
-    def __init__(self, nama, alamat, jenisKelamin, noTelp, noKk, noKtp):
+    def __init__(self, nama, alamat, jenisKelamin, noTelp, tglLahir, noKk, noKtp):
         self.namaPasien = nama
         self.alamatPasien = alamat
         self.jenisKelamin = jenisKelamin
         self.noTelpPasien = noTelp
+        self.tglLahir = tglLahir
         self.noKk = noKk
         self.noKtp = noKtp
 
@@ -33,9 +38,10 @@ class PasienOrm(Base):
             session = sessionFactory()
             for pasien in session.query(PasienOrm).all():
                 print(
-                    "Id Pasien = {}\nNama = {}\nAlamat = {}\nJenis Kelamin= {}\nNo Telp = {}\nNo KK = {}\nNo KTP = {}\n===================="
+                    "Id Pasien = {}\nNama = {}\nAlamat = {}\nJenis Kelamin= {}\nNo Telp = {}\nTgl Lahir = {}"
+                    "\nNo KK = {}\nNo KTP = {}\n===================="
                         .format(pasien.id, pasien.namaPasien, pasien.alamatPasien, pasien.jenisKelamin,
-                                pasien.noTelpPasien, pasien.noKk, pasien.noKtp))
+                                pasien.noTelpPasien, pasien.tglLahir, pasien.noKk, pasien.noKtp))
             session.close()
         except Exception as e:
             print("===>", e)
@@ -45,7 +51,7 @@ class PasienOrm(Base):
         try:
             session = sessionFactory()
             pasienOrm = PasienOrm(pasien.nama, pasien.alamat, pasien.jenisKelamin,
-                                  pasien.noTelp, pasien.noKK, pasien.noKtp)
+                                  pasien.noTelp, pasien.tglLahir, pasien.noKK, pasien.noKtp)
             session.add(pasienOrm)
             session.commit()
             session.close()

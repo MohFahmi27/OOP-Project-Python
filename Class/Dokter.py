@@ -6,11 +6,12 @@ from Database.Orm.DokterOrm import DokterOrm
 
 class Dokter(Person):
 
-    def __init__(self, nama, alamat, jenisKelamin, noTelp, spesialis=[]):
+    def __init__(self, nama, alamat, jenisKelamin, noTelp, tglLahir, spesialis=[]):
         self.__nama = nama
         self.__alamat = alamat
         self.__jenisKelamin = jenisKelamin
         self.__noTelp = noTelp
+        self.__tglLahir = tglLahir
         self.__spesialis = spesialis
 
     @property
@@ -44,6 +45,14 @@ class Dokter(Person):
     @noTelp.setter
     def noTelp(self, noTelp):
         self.__noTelp = noTelp
+
+    @property
+    def tglLahir(self):
+        return self.__tglLahir
+
+    @tglLahir.setter
+    def tglLahir(self, date):
+        self.__tglLahir = date
 
     @property
     def spesialis(self):

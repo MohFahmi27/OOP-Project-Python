@@ -6,11 +6,12 @@ from Database.base import sessionFactory
 
 class Pasien(Person):
 
-    def __init__(self, nama, alamat, jenisKelamin, noTelp, noKK, noKtp):
+    def __init__(self, nama, alamat, jenisKelamin, noTelp, tglLahir, noKK, noKtp):
         self.__nama = nama
         self.__alamat = alamat
         self.__jenisKelamin = jenisKelamin
         self.__noTelp = noTelp
+        self.__tglLahir = tglLahir
         self.__noKK = noKK
         self.__noKtp = noKtp
 
@@ -45,6 +46,14 @@ class Pasien(Person):
     @noTelp.setter
     def noTelp(self, noTelp):
         self.__noTelp = noTelp
+
+    @property
+    def tglLahir(self):
+        return self.__tglLahir
+
+    @tglLahir.setter
+    def tglLahir(self, date):
+        self.__tglLahir = date
 
     @property
     def noKK(self):

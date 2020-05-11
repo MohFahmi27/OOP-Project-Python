@@ -8,3 +8,5 @@ class Resep:
          self.Dokter = Dokter
          self.Pasien = Pasien
          self.Obat = Obat
+
+

@@ -1,23 +1,28 @@
-from sqlalchemy import Column, String, Integer, Text, Enum
+from sqlalchemy import Column, String, Integer, Text, Enum, Date
+from sqlalchemy.orm import relationship
+
 from Class.JenisKelamin import JenisKelamin
 from Database.base import Base, sessionFactory
 
 
 class DokterOrm(Base):
-    __tablename__ = 'Dokter'
+    __tablename__ = 'doktor'
 
     id = Column(Integer, primary_key=True)
     namaDokter = Column(String)
     alamatDokter = Column(Text)
     jenisKelamin = Column(Enum(JenisKelamin))
     noTepDokter = Column(String)
+    tglLahir = Column(Date)
     spesialis = Column(String)
+    reseps = relationship("ResepOrm", back_populates="dokter")
 
-    def __init__(self, nama, alamat, jenisKelamin, noTelp, spesialis):
+    def __init__(self, nama, alamat, jenisKelamin, noTelp, tglLahir, spesialis):
         self.namaDokter = nama
         self.alamatDokter = alamat
         self.jenisKelamin = jenisKelamin
         self.noTepDokter = noTelp
+        self.tglLahir = tglLahir
         self.spesialis = spesialis
 
     @staticmethod
@@ -26,9 +31,11 @@ class DokterOrm(Base):
             session = sessionFactory()
             for dokter in session.query(DokterOrm).all():
                 print(
-                    "Id Pasien = {}\nNama = {}\nAlamat = {}\nJenis Kelamin= {}\nNo Telp = {}\nSpesialis = {}\n===================="
-                        .format(dokter.id, dokter.namaDokter, dokter.alamatDokter, dokter.jenisKelamin,
-                                dokter.noTepDokter, dokter.spesialis))
+                    "Id Pasien = {}\nNama = {}\nAlamat = {}\nJenis Kelamin= {}"
+                    "\nNo Telp = {}\nTgl Lahir = {}\nSpesialis = {}\n===================="
+                        .format(dokter.id, dokter.namaDokter, dokter.alamatDokter,
+                                dokter.jenisKelamin,
+                                dokter.noTepDokter, dokter.tglLahir, dokter.spesialis))
             session.close()
         except Exception as e:
             print("===>", e)
@@ -37,7 +44,8 @@ class DokterOrm(Base):
     def insertDokter(dokter):
         try:
             session = sessionFactory()
-            dokterOrm = DokterOrm(dokter.nama, dokter.alamat, dokter.jenisKelamin, dokter.noTelp, dokter.spesialis)
+            dokterOrm = DokterOrm(dokter.nama, dokter.alamat, dokter.jenisKelamin,
+                                  dokter.noTelp, dokter.tglLahir, dokter.spesialis)
             session.add(dokterOrm)
             session.commit()
             session.close()

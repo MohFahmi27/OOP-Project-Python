@@ -1,23 +1,25 @@
-from sqlalchemy import Column, String, Integer, Text, Enum
+from sqlalchemy import Column, String, Integer, Text, Enum, Date
 from Class.JenisKelamin import JenisKelamin
 from Database.base import Base, sessionFactory
 
 
 class ApotekerOrm(Base):
-    __tablename__ = 'Apoteker'
+    __tablename__ = 'apoteker'
 
     id = Column(Integer, primary_key=True)
     namaApeteker = Column(String)
     alamatApoteker = Column(Text)
     jenisKelamin = Column(Enum(JenisKelamin))
     noTelpApoteker = Column(String)
+    tglLahir = Column(Date)
     NIP = Column(String)
 
-    def __init__(self, nama, alamat, jenisKelamin, noTelp, spesialis):
-        self.namaApoteker = nama
+    def __init__(self, nama, alamat, jenisKelamin, noTelp, tglLahir, spesialis):
+        self.namaApeteker = nama
         self.alamatApoteker = alamat
         self.jenisKelamin = jenisKelamin
         self.noTelpApoteker = noTelp
+        self.tglLahir = tglLahir
         self.NIP = spesialis
 
     @staticmethod
@@ -26,19 +28,20 @@ class ApotekerOrm(Base):
             session = sessionFactory()
             for apoteker in session.query(ApotekerOrm).all():
                 print(
-                    "Id Apoteker = {}\nNama = {}\nAlamat = {}\nJenis Kelamin= {}\nNo Telp = {}\nNIP = {}\n===================="
-                        .format(apoteker.id, apoteker.namaApoteker, apoteker.alamatApoteker, apoteker.jenisKelamin,
-                                apoteker.noTelpApoteker, apoteker.NIP))
+                    "Id Apoteker = {}\nNama = {}\nAlamat = {}\nJenis Kelamin= {}\n"
+                    "No Telp = {}\nTgl Lahir = {}\nNIP = {}\n===================="
+                        .format(apoteker.id, apoteker.namaApeteker, apoteker.alamatApoteker, apoteker.jenisKelamin,
+                                apoteker.noTelpApoteker, apoteker.tglLahir, apoteker.NIP))
             session.close()
         except Exception as e:
             print("===>", e)
 
     @staticmethod
-    def insertDokter(apoteker):
+    def insertApoteker(apoteker):
         try:
             session = sessionFactory()
-            apotekerOrm = ApotekerOrm(apoteker.nama, apoteker.alapoteker, apoteker.jenisKelamin,
-                                      apoteker.noTelp, apoteker.nip)
+            apotekerOrm = ApotekerOrm(apoteker.nama, apoteker.alamat, apoteker.jenisKelamin,
+                                      apoteker.noTelp, apoteker.tglLahir, apoteker.nip)
             session.add(apotekerOrm)
             session.commit()
             session.close()

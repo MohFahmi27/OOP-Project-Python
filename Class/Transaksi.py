@@ -6,7 +6,7 @@ in here Patient get to Pay the medicine.
 '''
 class Transaksi():
 
-    def __init__(self, tglTransaksi, besarTransaksi, Pasien):
+    def __init__(self, tglTransaksi, besarTransaksi):
         self.__tglTransaksi = tglTransaksi
         self.__besarTransaksi = besarTransaksi
         self.Pasien = Pasien

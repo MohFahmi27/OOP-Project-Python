@@ -10,7 +10,8 @@ class ObatOrm(Base):
     id = Column(Integer, primary_key=True)
     jenisObat = Column(Enum(JenisObat))
     namaObat = Column(String)
-    inventaris_obat = relationship("InventarisObatOrm", uselist=False, backref="obat")
+    inventaris_obat = relationship("InventarisObatOrm", back_populates="obat")
+    reseps = relationship("ResepOrm", back_populates="obat")
 
     def __init__(self, jenisObat, namaObat):
         self.jenisObat = jenisObat

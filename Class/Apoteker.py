@@ -3,11 +3,12 @@ from Class.Person import Person
 
 class Apoteker(Person):
 
-    def __init__(self, nama, alamat, jenisKelamin, noTelp, nip):
+    def __init__(self, nama, alamat, jenisKelamin, noTelp, tglLahir, nip):
         self.__nama = nama
         self.__alamat = alamat
         self.__jenisKelamin = jenisKelamin
         self.__noTelp = noTelp
+        self.__tglLahir = tglLahir
         self.__nip = nip
 
     @property
@@ -41,6 +42,14 @@ class Apoteker(Person):
     @noTelp.setter
     def noTelp(self, noTelp):
         self.__noTelp = noTelp
+
+    @property
+    def tglLahir(self):
+        return self.__tglLahir
+
+    @tglLahir.setter
+    def tglLahir(self, date):
+        self.__tglLahir = date
 
     @property
     def nip(self):

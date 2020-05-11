@@ -11,6 +11,7 @@ class PenyakitOrm(Base):
     namaPenyakit = Column(String)
     gejala = Column(Text)
 
+
     def __init__(self, kodePenyakit, kelompokPenyakit, namaPenyakit, gejala):
         self.kodePenyakit = kodePenyakit
         self.kelompokPenyakit = kelompokPenyakit

@@ -17,3 +17,7 @@ class Person(ABC):
     @abstractproperty
     def noTelp(self):
         pass
+
+    @abstractproperty
+    def tglLahir(self):
+        pass
