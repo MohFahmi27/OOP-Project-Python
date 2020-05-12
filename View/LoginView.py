@@ -23,8 +23,9 @@ class LoginView(QWidget):
         lblPresentBy = QLabelReuse("PRESENT BY")
         lblPresentBy.setAlignment(QtCore.Qt.AlignCenter)
         lblCredit = QLabelReuse("-> Mohammad Fahmi         -> Pramana Ade Putra\n"
-                                "-> M.Rizqi Nugraha             -> Sakti Pujo Edi")
+                                "-> M.Rizqi Nugraha        -> Sakti Pujo Edi")
         lblCredit.setAlignment(QtCore.Qt.AlignCenter)
+        lblCredit.setStyleSheet("color : grey")
 
         # =========== LAYOUT 2 SECTION ===========
         lbljudul = QLabelReuse("PUSKESMAS")
@@ -37,7 +38,9 @@ class LoginView(QWidget):
         lbljudul.setAlignment(QtCore.Qt.AlignCenter)
 
         lblusername = QLabelReuse("Username")
+        lblusername.setStyleSheet("color : grey;")
         lblpassword = QLabelReuse("Password")
+        lblpassword.setStyleSheet("color : grey;")
         # EditLine
         txtUsername = EditLineReuse("")
         txtpassword = EditLineReuse("")
@@ -52,6 +55,8 @@ class LoginView(QWidget):
         layout1.addWidget(lblCredit)
 
         layout2 = QVBoxLayout()
+        layout2.setContentsMargins(45, 45, 45, 45)
+        layout2.setSpacing(0)
         layout2.addWidget(lbljudul)
         layout2.addWidget(lblusername)
         layout2.addWidget(txtUsername)
