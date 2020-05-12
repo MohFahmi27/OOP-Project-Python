@@ -1,6 +1,6 @@
 import sys
 
-from PyQt5 import QtCore, QtWidgets, QtGui
+from PyQt5 import QtCore, QtGui
 from PyQt5.QtWidgets import *
 
 from View.ReuseComponent.QFrameReuse import QFrameReuse
@@ -32,7 +32,7 @@ class MainMenuView(QWidget):
         frameTitle = QFrameReuse("white")
 
         headerLayout = QGridLayout(frameTitle)
-        hakAkses = QLabelReuse("hak_akses")
+        hakAkses = QLabelReuse("hak_akses", "black")
         hakAkses.setAlignment(QtCore.Qt.AlignLeft)
         profile = QPushButtonReuseTwo("", "assets/img/profile.png")
 
@@ -40,21 +40,22 @@ class MainMenuView(QWidget):
         frameDashboard = QFrameReuse("rgb(58, 150, 248)")
         frameLayout = QHBoxLayout(frameDashboard)
         frameLayout.setContentsMargins(40, 40, 40, 40)
+
         frameLayoutLeft = QVBoxLayout()
         frameLayoutRight = QVBoxLayout()
+
         font = QtGui.QFont()
         font.setFamily("Arial Rounded")
         font.setPointSize(11)
         font.setWeight(50)
-        welcome = QLabelReuse("Welcome")
+        welcome = QLabelReuse("Welcome", "white")
         welcome.setFont(font)
-        welcome.setStyleSheet("color : white")
+
         font = QtGui.QFont()
         font.setFamily("Product Sans")
         font.setPointSize(12)
         font.setWeight(75)
-        username = QLabelReuse("username")
-        username.setStyleSheet("color : white")
+        username = QLabelReuse("username", "white")
         username.setFont(font)
 
         font = QtGui.QFont()
@@ -63,11 +64,10 @@ class MainMenuView(QWidget):
         font.setItalic(True)
         font.setWeight(50)
         quote = QLabelReuse("\n\n\n\n\nTo keep the body in good health is a duty.. otherwise \n\n"
-                            "we shall not be able to keep our mind strong and clear.\n")
-        quote.setStyleSheet("color : white")
+                            "we shall not be able to keep our mind strong and clear.\n", "white")
         quote.setFont(font)
 
-        lbllogo = QLabelReuse("")
+        lbllogo = QLabelReuse("", "")
         lbllogo.setPixmap(QtGui.QPixmap("assets/img/medical256.png"))
         lbllogo.setAlignment(QtCore.Qt.AlignRight)
 

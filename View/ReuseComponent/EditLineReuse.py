@@ -14,8 +14,7 @@ class EditLineReuse(QLineEdit):
         font = QtGui.QFont()
         font.setFamily("Product Sans")
         font.setPointSize(14)
-        font.setBold(True)
-        font.setWeight(75)
+        font.setWeight(55)
 
         self.setFont(font)
 

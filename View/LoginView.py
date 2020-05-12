@@ -2,7 +2,7 @@
 # import sys
 import sys
 
-from PyQt5 import QtGui, QtWidgets, QtCore
+from PyQt5 import QtGui, QtCore
 from PyQt5.QtWidgets import *
 
 from View.ReuseComponent.EditLineReuse import EditLineReuse
@@ -17,18 +17,17 @@ class LoginView(QWidget):
         self.setWindowTitle("LOGIN PUSKESMAS")
 
         # =========== LAYOUT 1 SECTION ===========
-        lbllogo = QLabelReuse("")
+        lbllogo = QLabelReuse("","")
         lbllogo.setPixmap(QtGui.QPixmap("assets/img/lung.svg"))
         lbllogo.setAlignment(QtCore.Qt.AlignCenter)
-        lblPresentBy = QLabelReuse("PRESENT BY")
+        lblPresentBy = QLabelReuse("PRESENT BY", "black")
         lblPresentBy.setAlignment(QtCore.Qt.AlignCenter)
         lblCredit = QLabelReuse("-> Mohammad Fahmi         -> Pramana Ade Putra\n"
-                                "-> M.Rizqi Nugraha        -> Sakti Pujo Edi")
+                                "-> M.Rizqi Nugraha        -> Sakti Pujo Edi", "grey")
         lblCredit.setAlignment(QtCore.Qt.AlignCenter)
-        lblCredit.setStyleSheet("color : grey")
 
         # =========== LAYOUT 2 SECTION ===========
-        lbljudul = QLabelReuse("PUSKESMAS")
+        lbljudul = QLabelReuse("PUSKESMAS", "black")
         font = QtGui.QFont()
         font.setFamily("Harlow Solid Italic")
         font.setPointSize(24)
@@ -37,10 +36,8 @@ class LoginView(QWidget):
         lbljudul.setFont(font)
         lbljudul.setAlignment(QtCore.Qt.AlignCenter)
 
-        lblusername = QLabelReuse("Username")
-        lblusername.setStyleSheet("color : grey;")
-        lblpassword = QLabelReuse("Password")
-        lblpassword.setStyleSheet("color : grey;")
+        lblusername = QLabelReuse("Username", "grey")
+        lblpassword = QLabelReuse("Password", "grey")
         # EditLine
         txtUsername = EditLineReuse("")
         txtpassword = EditLineReuse("")
