@@ -21,7 +21,7 @@ class PasienOrm(Base):
     tglLahir = Column(Date)
     noKk = Column(String)
     noKtp = Column(String)
-    reseps = relationship("ResepOrm", back_populates="pasien")
+    # reseps = relationship("ResepOrm", back_populates="pasien")
 
     def __init__(self, nama, alamat, jenisKelamin, noTelp, tglLahir, noKk, noKtp):
         self.namaPasien = nama

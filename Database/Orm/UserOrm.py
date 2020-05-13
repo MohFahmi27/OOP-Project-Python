@@ -50,7 +50,6 @@ class UserOrm(Base):
                 UserOrm.password: newPassword
             }, synchronize_session=False)
             session.commit()
-            session.close()
         except Exception as e:
             print("===>", e)
         else:
@@ -76,6 +75,16 @@ class UserOrm(Base):
                 return True
             else:
                 return False
+            session.close()
+        except Exception as e:
+            print("===>", e)
+
+    @staticmethod
+    def findHakAkses(username):
+        try:
+            session = sessionFactory()
+            for user in session.query(UserOrm).filter_by(username = username):
+                return user.hak_akses
             session.close()
         except Exception as e:
             print("===>", e)

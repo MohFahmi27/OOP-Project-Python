@@ -1,6 +1,8 @@
 import sys
 
-from PyQt5.QtWidgets import QApplication
+from PyQt5 import QtCore, QtGui
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import Qt
 
 from View.FormView import FormView
 
@@ -10,7 +12,3 @@ class PasienView(FormView):
         super().__init__()
         self.setWindowTitle("PASIEN FORM")
 
-app = QApplication(sys.argv)
-mainMenuView = PasienView()
-mainMenuView.show()
-sys.exit(app.exec())

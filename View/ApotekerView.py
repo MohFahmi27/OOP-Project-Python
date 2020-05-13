@@ -9,8 +9,3 @@ class ApotekerView(FormView):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("APOTEKER FORM")
-
-app = QApplication(sys.argv)
-mainMenuView = ApotekerView()
-mainMenuView.show()
-sys.exit(app.exec())

@@ -11,10 +11,10 @@ class ResepOrm(Base):
     idPasien = Column(Integer, ForeignKey('Pasien.id'))
     idObat = Column(Integer, ForeignKey('obat.id'))
     tglResep = Column(Date)
-    dokter = relationship("DokterOrm", back_populates="reseps")
-    pasien = relationship("PasienOrm", back_populates="reseps")
-    obat = relationship("ObatOrm", back_populates="reseps")
-    resep = relationship("TransaksiOrm", back_populates="resep")
+    # dokter = relationship("DokterOrm", back_populates="reseps")
+    # pasien = relationship("PasienOrm", back_populates="reseps")
+    # obat = relationship("ObatOrm", back_populates="reseps")
+    # resep = relationship("TransaksiOrm", back_populates="resep")
 
 
     def __init__(self, dokter, pasien, obat, tglResep):

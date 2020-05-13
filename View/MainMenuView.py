@@ -1,6 +1,7 @@
 import sys
 
 from PyQt5 import QtCore, QtGui
+from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import *
 
 from View.ReuseComponent.QFrameReuse import QFrameReuse
@@ -9,9 +10,10 @@ from View.ReuseComponent.QPushButtonReuseTwo import QPushButtonReuseTwo
 
 
 class MainMenuView(QWidget):
-    def __init__(self):
+    def __init__(self, username, hakakses):
         super().__init__()
         self.resize(1400, 833)
+        self.setWindowFlag(QtCore.Qt.WindowCloseButtonHint, False)
         self.setWindowTitle("MAIN MENU")
 
         # ========== SIDEBAR SECTION =============
@@ -21,19 +23,25 @@ class MainMenuView(QWidget):
         sideBarLayout = QGridLayout(frameSideBar)
         sideBarLayout.setSpacing(5)
         btnMainMenu = QPushButtonReuseTwo("", "assets/img/medication.png")
-        btnPasien = QPushButtonReuseTwo("", "assets/img/pasien.png")
-        btnDokter = QPushButtonReuseTwo("", "assets/img/dokter.png")
-        btnApoteker = QPushButtonReuseTwo("", "assets/img/apoteker.png")
-        btnObat = QPushButtonReuseTwo("", "assets/img/obat.png")
-        btnUser = QPushButtonReuseTwo("", "assets/img/user.png")
-        btnLogOut = QPushButtonReuseTwo("", "assets/img/log_out.png")
+        self.btnPasien = QPushButtonReuseTwo("", "assets/img/pasien.png")
+        self.btnDokter = QPushButtonReuseTwo("", "assets/img/dokter.png")
+        self.btnApoteker = QPushButtonReuseTwo("", "assets/img/apoteker.png")
+        self.btnObat = QPushButtonReuseTwo("", "assets/img/obat.png")
+        self.btnUser = QPushButtonReuseTwo("", "assets/img/user.png")
+        self.btnLogOut = QPushButtonReuseTwo("", "assets/img/log_out.png")
+
+        # =========== EVENT SECTION =============
+        self.btnLogOut.clicked.connect(lambda: self.logOutSlot())
+        self.btnPasien.clicked.connect(lambda: self.pasienSlot())
+        self.btnDokter.clicked.connect(lambda: self.dokterSlot())
+        self.btnApoteker.clicked.connect(lambda: self.apotekerSlot())
 
         # ========== DASHBOARD SECTION TITLE ===========
         frameTitle = QFrameReuse("white")
 
         headerLayout = QGridLayout(frameTitle)
-        hakAkses = QLabelReuse("hak_akses", "black")
-        hakAkses.setAlignment(QtCore.Qt.AlignLeft)
+        self.hakAkses = QLabelReuse(str(hakakses), "black")
+        self.hakAkses.setAlignment(QtCore.Qt.AlignLeft)
         profile = QPushButtonReuseTwo("", "assets/img/profile.png")
 
         # ========== DASHBOARD SECTION BODY ===========
@@ -55,8 +63,8 @@ class MainMenuView(QWidget):
         font.setFamily("Product Sans")
         font.setPointSize(12)
         font.setWeight(75)
-        username = QLabelReuse("username", "white")
-        username.setFont(font)
+        self.username = QLabelReuse(username, "white")
+        self.username.setFont(font)
 
         font = QtGui.QFont()
         font.setFamily("Arial Rounded")
@@ -73,21 +81,21 @@ class MainMenuView(QWidget):
 
         # ========== LAYOUT SECTION ==============
         sideBarLayout.addWidget(btnMainMenu, 0, 0)
-        sideBarLayout.addWidget(btnPasien, 1, 0)
-        sideBarLayout.addWidget(btnDokter, 2, 0)
-        sideBarLayout.addWidget(btnApoteker, 3, 0)
-        sideBarLayout.addWidget(btnObat, 4, 0)
-        sideBarLayout.addWidget(btnUser, 5, 0)
-        sideBarLayout.addWidget(btnLogOut, 6, 0, QtCore.Qt.AlignBottom)
+        sideBarLayout.addWidget(self.btnPasien, 1, 0)
+        sideBarLayout.addWidget(self.btnDokter, 2, 0)
+        sideBarLayout.addWidget(self.btnApoteker, 3, 0)
+        sideBarLayout.addWidget(self.btnObat, 4, 0)
+        sideBarLayout.addWidget(self.btnUser, 5, 0)
+        sideBarLayout.addWidget(self.btnLogOut, 6, 0, QtCore.Qt.AlignBottom)
 
-        headerLayout.addWidget(hakAkses, 0, 0, QtCore.Qt.AlignLeft)
+        headerLayout.addWidget(self.hakAkses, 0, 0, QtCore.Qt.AlignLeft)
         headerLayout.addWidget(profile, 0, 2, QtCore.Qt.AlignRight)
 
         frameLayout.addLayout(frameLayoutLeft)
         frameLayout.addLayout(frameLayoutRight)
 
         frameLayoutLeft.addWidget(welcome)
-        frameLayoutLeft.addWidget(username)
+        frameLayoutLeft.addWidget(self.username)
         frameLayoutLeft.addWidget(quote)
 
         frameLayoutRight.addWidget(lbllogo)
@@ -99,8 +107,33 @@ class MainMenuView(QWidget):
         layoutUtama.setSpacing(10)
         self.setLayout(layoutUtama)
 
+    @pyqtSlot()
+    def logOutSlot(self):
+        from View.LoginView import LoginView
+        self.login = LoginView()
+        self.login.show()
+        self.close()
 
-app = QApplication(sys.argv)
-mainMenuView = MainMenuView()
-mainMenuView.show()
-sys.exit(app.exec())
+    @pyqtSlot()
+    def pasienSlot(self):
+        from View.PasienView import PasienView
+        self.pasienview = PasienView()
+        self.pasienview.show()
+        self.pasienview.exec_()
+
+    @pyqtSlot()
+    def dokterSlot(self):
+        from View.DokterView import DokterView
+        self.dokterView = DokterView()
+        self.dokterView.show()
+        self.dokterView.exec_()
+
+    @pyqtSlot()
+    def apotekerSlot(self):
+        from View.ApotekerView import ApotekerView
+        self.apotekerView = ApotekerView()
+        self.apotekerView.show()
+        self.apotekerView.exec_()
+
+
+

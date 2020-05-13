@@ -3,8 +3,11 @@
 import sys
 
 from PyQt5 import QtGui, QtCore
+from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import *
 
+from Database.Orm.UserOrm import UserOrm
+from View.MainMenuView import MainMenuView
 from View.ReuseComponent.EditLineReuse import EditLineReuse
 from View.ReuseComponent.QLabelReuse import QLabelReuse
 from View.ReuseComponent.QPushButtonReuse import QPushButtonReuse
@@ -17,9 +20,10 @@ class LoginView(QWidget):
         self.setWindowTitle("LOGIN PUSKESMAS")
 
         # =========== LAYOUT 1 SECTION ===========
-        lbllogo = QLabelReuse("","")
+        lbllogo = QLabelReuse("", "")
         lbllogo.setPixmap(QtGui.QPixmap("assets/img/lung.svg"))
         lbllogo.setAlignment(QtCore.Qt.AlignCenter)
+
         lblPresentBy = QLabelReuse("PRESENT BY", "black")
         lblPresentBy.setAlignment(QtCore.Qt.AlignCenter)
         lblCredit = QLabelReuse("-> Mohammad Fahmi         -> Pramana Ade Putra\n"
@@ -39,11 +43,12 @@ class LoginView(QWidget):
         lblusername = QLabelReuse("Username", "grey")
         lblpassword = QLabelReuse("Password", "grey")
         # EditLine
-        txtUsername = EditLineReuse("")
-        txtpassword = EditLineReuse("")
-        txtpassword.setEchoMode(QLineEdit.Password)
+        self.txtUsername = EditLineReuse("")
+        self.txtpassword = EditLineReuse("")
+        self.txtpassword.setEchoMode(QLineEdit.Password)
         # QPushButton
-        btnLogin = QPushButtonReuse("Login")
+        self.btnLogin = QPushButtonReuse("Login")
+        self.btnLogin.clicked.connect(lambda: self.buttonClick())
 
         # =========== LAYOUT SECTION =============
         layout1 = QVBoxLayout()
@@ -56,19 +61,48 @@ class LoginView(QWidget):
         layout2.setSpacing(0)
         layout2.addWidget(lbljudul)
         layout2.addWidget(lblusername)
-        layout2.addWidget(txtUsername)
+        layout2.addWidget(self.txtUsername)
         layout2.addWidget(lblpassword)
-        layout2.addWidget(txtpassword)
-        layout2.addWidget(btnLogin)
+        layout2.addWidget(self.txtpassword)
+        layout2.addWidget(self.btnLogin)
 
         layoutUtama = QHBoxLayout()
         layoutUtama.addLayout(layout1)
         layoutUtama.addLayout(layout2)
 
         self.setLayout(layoutUtama)
+        self.show()
 
+    @pyqtSlot()
+    def buttonClick(self):
+        username = self.txtUsername.text()
+        password = self.txtpassword.text()
+        checkLogin = UserOrm.verifyUser(username, password)
+        if (checkLogin == True):
+            self.switchMainMenu()
+        else:
+            msg = QMessageBox()
+            msg.resize(250, 250)
+            msg.setIcon(QMessageBox.Warning)
+            msg.setText("Username Atau Password Salah!")
+            msg.setWindowTitle("LOGIN SALAH")
+            msg.exec_()
+            self.clear()
 
-app = QApplication(sys.argv)
-loginView = LoginView()
-loginView.show()
-sys.exit(app.exec())
+    @pyqtSlot()
+    def switchMainMenu(self):
+        username = self.txtUsername.text()
+        hakAkses = UserOrm.findHakAkses(username)
+        self.mainMenu = MainMenuView(username.upper(), hakAkses)
+        self.mainMenu.show()
+        self.hide()
+
+    def clear(self):
+        self.txtUsername.setText("")
+        self.txtpassword.setText("")
+        self.txtUsername.setFocus()
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    loginView = LoginView()
+    sys.exit(app.exec_())
