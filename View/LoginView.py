@@ -87,7 +87,6 @@ class LoginView(QWidget):
             msg.setText("Username Atau Password Salah!")
             msg.setWindowTitle("LOGIN SALAH")
             msg.exec_()
-            self.clear()
 
     @pyqtSlot()
     def switchMainMenu(self):

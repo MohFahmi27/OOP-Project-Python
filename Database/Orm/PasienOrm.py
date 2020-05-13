@@ -48,17 +48,12 @@ class PasienOrm(Base):
 
     @staticmethod
     def insertPasien(pasien):
-        try:
-            session = sessionFactory()
-            pasienOrm = PasienOrm(pasien.nama, pasien.alamat, pasien.jenisKelamin,
-                                  pasien.noTelp, pasien.tglLahir, pasien.noKK, pasien.noKtp)
-            session.add(pasienOrm)
-            session.commit()
-            session.close()
-        except Exception as e:
-            print("===>", e)
-        else:
-            print("Data Berhasil Disimpan!")
+        session = sessionFactory()
+        pasienOrm = PasienOrm(pasien.nama, pasien.alamat, pasien.jenisKelamin,
+                              pasien.noTelp, pasien.tglLahir, pasien.noKK, pasien.noKtp)
+        session.add(pasienOrm)
+        session.commit()
+        session.close()
 
     @staticmethod
     def updatePasien(idPasien):

@@ -8,7 +8,7 @@ class QComboBoxReuse(QComboBox):
         super().__init__()
         self.setStyleSheet("border : 0;\n"
                            "outline : 0;\n"
-                           "background : transparent;\n"
+                           # "background : transparent;\n"
                            "border-bottom : 2px solid rgb(0, 85, 255);")
         font = QtGui.QFont()
         font.setFamily("Product Sans")
