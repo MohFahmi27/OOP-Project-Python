@@ -38,17 +38,12 @@ class ApotekerOrm(Base):
 
     @staticmethod
     def insertApoteker(apoteker):
-        try:
-            session = sessionFactory()
-            apotekerOrm = ApotekerOrm(apoteker.nama, apoteker.alamat, apoteker.jenisKelamin,
-                                      apoteker.noTelp, apoteker.tglLahir, apoteker.nip)
-            session.add(apotekerOrm)
-            session.commit()
-            session.close()
-        except Exception as e:
-            print("===>", e)
-        else:
-            print("Data Berhasil Disimpan!")
+        session = sessionFactory()
+        apotekerOrm = ApotekerOrm(apoteker.nama, apoteker.alamat, apoteker.jenisKelamin,
+                                  apoteker.noTelp, apoteker.tglLahir, apoteker.nip)
+        session.add(apotekerOrm)
+        session.commit()
+        session.close()
 
     @staticmethod
     def updateApoteker(idApoteker):

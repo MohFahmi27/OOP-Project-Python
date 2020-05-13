@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, Enum
+from sqlalchemy import Column, String, Integer, Enum, desc
 from Class.JenisObat import JenisObat
 from Database.base import Base, sessionFactory
 from sqlalchemy.orm import relationship
@@ -30,16 +30,11 @@ class ObatOrm(Base):
 
     @staticmethod
     def insertObat(obat):
-        try:
-            session = sessionFactory()
-            obatOrm = ObatOrm(obat.jenisObat, obat.namaObat)
-            session.add(obatOrm)
-            session.commit()
-            session.close()
-        except Exception as e:
-            print("===>", e)
-        else:
-            print("Data Berhasil Disimpan!")
+        session = sessionFactory()
+        obatOrm = ObatOrm(obat.jenisObat, obat.namaObat)
+        session.add(obatOrm)
+        session.commit()
+        session.close()
 
     @staticmethod
     def updateObat(idObat):
@@ -68,3 +63,11 @@ class ObatOrm(Base):
             print("===>", e)
         else:
             print("Data Berhasil Dihapus!")
+
+    @staticmethod
+    def findLatest():
+        session = sessionFactory()
+        result = session.query(ObatOrm).order_by(desc("id")).limit(1)
+        for obat in result:
+            return obat.id
+        session.close()

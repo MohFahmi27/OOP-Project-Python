@@ -31,15 +31,10 @@ class InventarisObatOrm(Base):
 
     @staticmethod
     def insertInvenObat(inventarisObat):
-        try:
-            session = sessionFactory()
-            inventarisObatOrm = InventarisObatOrm(inventarisObat.idobat, inventarisObat.stockObat,
-                                                  inventarisObat.expObat,
-                                                  inventarisObat.hargaObat, inventarisObat.lokasi)
-            session.add(inventarisObatOrm)
-            session.commit()
-            session.close()
-        except Exception as e:
-            print("===>", e)
-        else:
-            print("Data Berhasil Disimpan!")
+        session = sessionFactory()
+        inventarisObatOrm = InventarisObatOrm(inventarisObat.idobat, inventarisObat.stockObat,
+                                              inventarisObat.expObat,
+                                              inventarisObat.hargaObat, inventarisObat.lokasi)
+        session.add(inventarisObatOrm)
+        session.commit()
+        session.close()

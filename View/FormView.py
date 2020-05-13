@@ -1,5 +1,3 @@
-import sys
-
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt, pyqtSlot
@@ -9,7 +7,6 @@ from View.ReuseComponent.EditLineReuse import EditLineReuse
 from View.ReuseComponent.QComboBoxReuse import QComboBoxReuse
 from View.ReuseComponent.QFrameReuse import QFrameReuse
 from View.ReuseComponent.QLabelReuse import QLabelReuse
-from View.ReuseComponent.QPushButtonReuse import QPushButtonReuse
 from View.ReuseComponent.QPushButtonReuseTwo import QPushButtonReuseTwo
 
 
@@ -46,17 +43,17 @@ class FormView(QDialog):
         lbljenisKelamin = QLabelReuse("\nJenis Kelamin\n", "grey")
         lbljenisKelamin.setFont(self.font)
         self.cmbJenisKelamin = QComboBoxReuse()
-        self.cmbJenisKelamin.addItems(['LAKI_LAKI', 'PEREMPUAN'])
+        self.cmbJenisKelamin.addItems(['LAKI-LAKI', 'PEREMPUAN'])
         self.pilJekel = [JenisKelamin.LAKI_LAKI, JenisKelamin.PEREMPUAN]
 
         lbltanggalLahir = QLabelReuse("\n\nTanggal Lahir\n", "grey")
         lbltanggalLahir.setFont(self.font)
         self.dateTglLahir = QDateEdit()
         self.dateTglLahir.setStyleSheet("border : 0;\n"
-                                        "outline : 0;\n"
-                                        "background : transparent;\n"
+                                        "outline : 0;\n"                                        
                                         "border-bottom : 2px solid rgb(0, 85, 255);")
-        self.dateTglLahir.setDisplayFormat("yyyy, MM, dd")
+        self.dateTglLahir.setDisplayFormat("dd - MMM - yyyy")
+        self.dateTglLahir.setCalendarPopup(True)
         font2 = QtGui.QFont()
         font2.setFamily("Product Sans")
         font2.setPointSize(14)
@@ -78,14 +75,10 @@ class FormView(QDialog):
         # ======== ADD DATA ===========
         self.btnTambah = QPushButtonReuseTwo("", "assets/img/button.png")
         self.btnTambah.setStyleSheet("background-color : rgb(0, 85, 255);\n"
-                                "border : none;\n"
-                                "border-radius : 10px;\n"
-                                "height : 80%;\n"
-                                "color : white;\n")
+                                     "height : 80%;\n")
         self.btnTambah.setIconSize(QtCore.QSize(75, 54))
 
         # ======== LAYOUT SECTION ======
-
         self.layoutUtama.addWidget(framelayout1, 0, 0, 1, 9, Qt.AlignTop)
         self.layoutUtama.addWidget(framelayout2, 2, 0, 1, 9)
         self.layoutUtama.addWidget(self.btnTambah, 5, 0, 1, 9, Qt.AlignBottom | Qt.AlignRight)

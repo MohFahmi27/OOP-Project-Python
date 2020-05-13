@@ -12,7 +12,7 @@ from View.ReuseComponent.QPushButtonReuseTwo import QPushButtonReuseTwo
 class MainMenuView(QWidget):
     def __init__(self, username, hakakses):
         super().__init__()
-        self.resize(1400, 833)
+        self.showMaximized()
         self.setWindowFlag(QtCore.Qt.WindowCloseButtonHint, False)
         self.setWindowTitle("MAIN MENU")
 
@@ -22,19 +22,21 @@ class MainMenuView(QWidget):
 
         sideBarLayout = QGridLayout(frameSideBar)
         sideBarLayout.setSpacing(5)
-        btnMainMenu = QPushButtonReuseTwo("", "assets/img/medication.png")
-        self.btnPasien = QPushButtonReuseTwo("", "assets/img/pasien.png")
-        self.btnDokter = QPushButtonReuseTwo("", "assets/img/dokter.png")
-        self.btnApoteker = QPushButtonReuseTwo("", "assets/img/apoteker.png")
-        self.btnObat = QPushButtonReuseTwo("", "assets/img/obat.png")
-        self.btnUser = QPushButtonReuseTwo("", "assets/img/user.png")
-        self.btnLogOut = QPushButtonReuseTwo("", "assets/img/log_out.png")
+        btnMainMenu = QPushButtonReuseTwo("Main Menu", "assets/img/medication.png")
+        self.btnPasien = QPushButtonReuseTwo("Form.Pasien", "assets/img/pasien.png")
+        self.btnDokter = QPushButtonReuseTwo("Form.Dokter", "assets/img/dokter.png")
+        self.btnApoteker = QPushButtonReuseTwo("Form.Apoteker", "assets/img/apoteker.png")
+        self.btnObat = QPushButtonReuseTwo("Form.Obat", "assets/img/obat.png")
+        self.btnUser = QPushButtonReuseTwo("Form.User", "assets/img/user.png")
+        self.btnLogOut = QPushButtonReuseTwo("Log Out", "assets/img/log_out.png")
 
         # =========== EVENT SECTION =============
         self.btnLogOut.clicked.connect(lambda: self.logOutSlot())
         self.btnPasien.clicked.connect(lambda: self.pasienSlot())
         self.btnDokter.clicked.connect(lambda: self.dokterSlot())
         self.btnApoteker.clicked.connect(lambda: self.apotekerSlot())
+        self.btnObat.clicked.connect(lambda: self.obatSlot())
+        self.btnUser.clicked.connect(lambda: self.userSlot())
 
         # ========== DASHBOARD SECTION TITLE ===========
         frameTitle = QFrameReuse("white")
@@ -135,5 +137,16 @@ class MainMenuView(QWidget):
         self.apotekerView.show()
         self.apotekerView.exec_()
 
+    @pyqtSlot()
+    def obatSlot(self):
+        from View.ObatView import ObatView
+        self.obatView = ObatView()
+        self.obatView.show()
+        self.obatView.exec_()
 
-
+    @pyqtSlot()
+    def userSlot(self):
+        from View.UserView import UserView
+        self.userView = UserView()
+        self.userView.show()
+        self.userView.exec_()
