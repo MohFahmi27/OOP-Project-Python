@@ -21,6 +21,7 @@ class PasienOrm(Base):
     tglLahir = Column(Date)
     noKk = Column(String)
     noKtp = Column(String)
+
     # reseps = relationship("ResepOrm", back_populates="pasien")
 
     def __init__(self, nama, alamat, jenisKelamin, noTelp, tglLahir, noKk, noKtp):
@@ -42,6 +43,18 @@ class PasienOrm(Base):
                     "\nNo KK = {}\nNo KTP = {}\n===================="
                         .format(pasien.id, pasien.namaPasien, pasien.alamatPasien, pasien.jenisKelamin,
                                 pasien.noTelpPasien, pasien.tglLahir, pasien.noKk, pasien.noKtp))
+            session.close()
+        except Exception as e:
+            print("===>", e)
+
+    @staticmethod
+    def showPasienIdNama():
+        try:
+            session = sessionFactory()
+            result = []
+            for pasien in session.query(PasienOrm).all():
+                result.append([str(pasien.id), str(pasien.namaPasien)])
+            return result
             session.close()
         except Exception as e:
             print("===>", e)

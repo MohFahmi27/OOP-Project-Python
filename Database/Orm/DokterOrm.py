@@ -41,6 +41,18 @@ class DokterOrm(Base):
             print("===>", e)
 
     @staticmethod
+    def showDokterIdNama():
+        try:
+            session = sessionFactory()
+            result = []
+            for dokter in session.query(DokterOrm).all():
+                result.append([str(dokter.id), str(dokter.namaDokter)])
+            return result
+            session.close()
+        except Exception as e:
+            print("===>", e)
+
+    @staticmethod
     def insertDokter(dokter):
         session = sessionFactory()
         dokterOrm = DokterOrm(dokter.nama, dokter.alamat, dokter.jenisKelamin,

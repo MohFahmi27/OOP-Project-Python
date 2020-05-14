@@ -4,6 +4,7 @@ from PyQt5 import QtCore, QtGui
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import *
 
+from Database.Orm.PemeriksaanOrm import PemeriksaanOrm
 from View.ReuseComponent.QFrameReuse import QFrameReuse
 from View.ReuseComponent.QLabelReuse import QLabelReuse
 from View.ReuseComponent.QPushButtonReuse import QPushButtonReuse
@@ -48,9 +49,13 @@ class MainMenuView(QWidget):
         self.hakAkses.setAlignment(QtCore.Qt.AlignLeft)
 
         layoutRightTitle = QHBoxLayout()
-        self.btnnotification = QPushButtonReuse("", "assets/img/notification.png")
-        self.btnnotification.setStyleSheet("background-color : transparent;")
+        self.btnnotification = QPushButtonReuse(str(PemeriksaanOrm.countNotif()), "assets/img/notification.png")
+        self.btnnotification.setStyleSheet("background-color : transparent;\n"
+                                           "color : red")
         profile = QPushButtonReuse("", "assets/img/profile.png")
+
+        # =========== TITLE SECTION EVENT ============
+        self.btnnotification.clicked.connect(lambda: self.pemeriksaanNotif())
 
         # ========== DASHBOARD SECTION BODY ===========
         frameDashboard = QFrameReuse("rgb(58, 150, 248)")
@@ -87,7 +92,7 @@ class MainMenuView(QWidget):
         lbllogo.setPixmap(QtGui.QPixmap("assets/img/medical256.png"))
         lbllogo.setAlignment(QtCore.Qt.AlignRight)
 
-        framePemeriksaan = QFrameReuse("rgb(241, 242, 246)")
+        framePemeriksaan = QFrameReuse("white")
         layoutPemeriksaan = QVBoxLayout(framePemeriksaan)
         layoutPemeriksaan.setContentsMargins(45, 45, 45, 45)
 
@@ -108,6 +113,9 @@ class MainMenuView(QWidget):
         lblTransaksijudul = QLabelReuse("\nForm. Transaksi\n", "black")
         lblTransaksijudul.setAlignment(QtCore.Qt.AlignCenter)
         self.btnTransaksi = QPushButtonReuse("Get Started", "")
+
+        # ========== DASHBOARD BODY EVENT =========
+        self.btnPemeriksaan.clicked.connect(lambda: self.pemeriksaanSlot())
 
         # ========== LAYOUT SECTION ==============
         sideBarLayout.addWidget(btnMainMenu, 0, 0)
@@ -191,3 +199,17 @@ class MainMenuView(QWidget):
         self.userView = UserView()
         self.userView.show()
         self.userView.exec_()
+
+    @pyqtSlot()
+    def pemeriksaanSlot(self):
+        from View.PemeriksaanView import PemeriksaanView
+        self.periksaView = PemeriksaanView()
+        self.periksaView.show()
+        self.periksaView.exec_()
+
+    @pyqtSlot()
+    def pemeriksaanNotif(self):
+        from View.notificationView import notificationView
+        self.notifView = notificationView()
+        self.notifView.show()
+        self.notifView.exec_()

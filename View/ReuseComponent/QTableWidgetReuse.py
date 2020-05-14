@@ -1,4 +1,4 @@
-from PyQt5 import Qt, QtGui
+from PyQt5 import Qt, QtGui, QtWidgets
 from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem
 
 from Database.Orm.UserOrm import UserOrm
@@ -17,6 +17,13 @@ class QTableWidgetReuse(QTableWidget):
         font.setPointSize(10)
         font.setWeight(55)
         self.setFont(font)
+
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.sizePolicy().hasHeightForWidth())
+
+        self.setSizePolicy(sizePolicy)
 
     def setmydata(self):
         horHeaders = []
