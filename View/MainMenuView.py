@@ -12,6 +12,7 @@ from View.ReuseComponent.QPushButtonReuse import QPushButtonReuse
 class MainMenuView(QWidget):
     def __init__(self, username, hakakses):
         super().__init__()
+
         self.showMaximized()
         self.setWindowFlag(QtCore.Qt.WindowCloseButtonHint, False)
         self.setWindowTitle("MAIN MENU")
