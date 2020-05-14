@@ -16,7 +16,6 @@ class UserView(QDialog):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("USER FORM.")
-        self.setModal(True)
         self.resize(1400, 350)
 
         # ======== FONT CONFIGURE ======
@@ -113,7 +112,7 @@ class UserView(QDialog):
 
     @pyqtSlot()
     def viewDataEvent(self):
-        from View.Content.UserContentView import UserContentView
+        from View.UserViewContent import UserContentView
         self.viewData = UserContentView()
         self.viewData.show()
         self.viewData.exec_()

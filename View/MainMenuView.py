@@ -86,7 +86,7 @@ class MainMenuView(QWidget):
         lbllogo.setPixmap(QtGui.QPixmap("assets/img/medical256.png"))
         lbllogo.setAlignment(QtCore.Qt.AlignRight)
 
-        framePemeriksaan = QFrameReuse("white")
+        framePemeriksaan = QFrameReuse("rgb(241, 242, 246)")
         layoutPemeriksaan = QVBoxLayout(framePemeriksaan)
         layoutPemeriksaan.setContentsMargins(45, 45, 45, 45)
 
@@ -144,8 +144,8 @@ class MainMenuView(QWidget):
         layoutUtama.addWidget(frameSideBar, 0, 0, 6, 1, QtCore.Qt.AlignLeft)
         layoutUtama.addWidget(frameTitle, 0, 1, 1, 9, QtCore.Qt.AlignTop)
         layoutUtama.addWidget(frameDashboard, 1, 1, 3, 9, QtCore.Qt.AlignTop)
-        layoutUtama.addWidget(framePemeriksaan, 4, 1, 2, 2)
-        layoutUtama.addWidget(frameTransaksi, 4, 3, 2, 2)
+        layoutUtama.addWidget(framePemeriksaan, 4, 1, 2, 2, QtCore.Qt.AlignHCenter)
+        layoutUtama.addWidget(frameTransaksi, 4, 3, 2, 2, QtCore.Qt.AlignHCenter)
         layoutUtama.setSpacing(10)
         self.setLayout(layoutUtama)
 
