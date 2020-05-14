@@ -42,12 +42,12 @@ class LoginView(QWidget):
 
         lblusername = QLabelReuse("Username", "grey")
         lblpassword = QLabelReuse("Password", "grey")
-        # EditLine
+
         self.txtUsername = EditLineReuse("")
         self.txtpassword = EditLineReuse("")
         self.txtpassword.setEchoMode(QLineEdit.Password)
-        # QPushButton
-        self.btnLogin = QPushButtonReuse("Login")
+
+        self.btnLogin = QPushButtonReuse("Login", "")
         self.btnLogin.clicked.connect(lambda: self.buttonClick())
 
         # =========== LAYOUT SECTION =============

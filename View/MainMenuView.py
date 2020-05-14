@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import *
 
 from View.ReuseComponent.QFrameReuse import QFrameReuse
 from View.ReuseComponent.QLabelReuse import QLabelReuse
-from View.ReuseComponent.QPushButtonReuseTwo import QPushButtonReuseTwo
+from View.ReuseComponent.QPushButtonReuse import QPushButtonReuse
 
 
 class MainMenuView(QWidget):
@@ -22,13 +22,13 @@ class MainMenuView(QWidget):
 
         sideBarLayout = QGridLayout(frameSideBar)
         sideBarLayout.setSpacing(5)
-        btnMainMenu = QPushButtonReuseTwo("Main Menu", "assets/img/medication.png")
-        self.btnPasien = QPushButtonReuseTwo("Form.Pasien", "assets/img/pasien.png")
-        self.btnDokter = QPushButtonReuseTwo("Form.Dokter", "assets/img/dokter.png")
-        self.btnApoteker = QPushButtonReuseTwo("Form.Apoteker", "assets/img/apoteker.png")
-        self.btnObat = QPushButtonReuseTwo("Form.Obat", "assets/img/obat.png")
-        self.btnUser = QPushButtonReuseTwo("Form.User", "assets/img/user.png")
-        self.btnLogOut = QPushButtonReuseTwo("Log Out", "assets/img/log_out.png")
+        btnMainMenu = QPushButtonReuse("Main Menu", "assets/img/medication.png")
+        self.btnPasien = QPushButtonReuse("Form.Pasien", "assets/img/pasien.png")
+        self.btnDokter = QPushButtonReuse("Form.Dokter", "assets/img/dokter.png")
+        self.btnApoteker = QPushButtonReuse("Form.Apoteker", "assets/img/apoteker.png")
+        self.btnObat = QPushButtonReuse("Form.Obat", "assets/img/obat.png")
+        self.btnUser = QPushButtonReuse("Form.User", "assets/img/user.png")
+        self.btnLogOut = QPushButtonReuse("Log Out", "assets/img/log_out.png")
 
         # =========== EVENT SECTION =============
         self.btnLogOut.clicked.connect(lambda: self.logOutSlot())
@@ -43,8 +43,13 @@ class MainMenuView(QWidget):
 
         headerLayout = QGridLayout(frameTitle)
         self.hakAkses = QLabelReuse(str(hakakses), "black")
+
         self.hakAkses.setAlignment(QtCore.Qt.AlignLeft)
-        profile = QPushButtonReuseTwo("", "assets/img/profile.png")
+
+        layoutRightTitle = QHBoxLayout()
+        self.btnnotification = QPushButtonReuse("", "assets/img/notification.png")
+        self.btnnotification.setStyleSheet("background-color : transparent;")
+        profile = QPushButtonReuse("", "assets/img/profile.png")
 
         # ========== DASHBOARD SECTION BODY ===========
         frameDashboard = QFrameReuse("rgb(58, 150, 248)")
@@ -81,6 +86,28 @@ class MainMenuView(QWidget):
         lbllogo.setPixmap(QtGui.QPixmap("assets/img/medical256.png"))
         lbllogo.setAlignment(QtCore.Qt.AlignRight)
 
+        framePemeriksaan = QFrameReuse("white")
+        layoutPemeriksaan = QVBoxLayout(framePemeriksaan)
+        layoutPemeriksaan.setContentsMargins(45, 45, 45, 45)
+
+        lblPemeriksaan = QLabelReuse("", "")
+        lblPemeriksaan.setPixmap(QtGui.QPixmap("assets/img/medical-tool.png"))
+        lblPemeriksaan.setAlignment(QtCore.Qt.AlignCenter)
+        lblPemeriksaanjudul = QLabelReuse("\nForm. Pemeriksaan\n", "black")
+        lblPemeriksaanjudul.setAlignment(QtCore.Qt.AlignCenter)
+        self.btnPemeriksaan = QPushButtonReuse("Get Started", "")
+
+        frameTransaksi = QFrameReuse("white")
+        layoutTransaksi = QVBoxLayout(frameTransaksi)
+        layoutTransaksi.setContentsMargins(45, 45, 45, 45)
+
+        lblTransaksi = QLabelReuse("", "")
+        lblTransaksi.setPixmap(QtGui.QPixmap("assets/img/transaksi.png"))
+        lblTransaksi.setAlignment(QtCore.Qt.AlignCenter)
+        lblTransaksijudul = QLabelReuse("\nForm. Transaksi\n", "black")
+        lblTransaksijudul.setAlignment(QtCore.Qt.AlignCenter)
+        self.btnTransaksi = QPushButtonReuse("Get Started", "")
+
         # ========== LAYOUT SECTION ==============
         sideBarLayout.addWidget(btnMainMenu, 0, 0)
         sideBarLayout.addWidget(self.btnPasien, 1, 0)
@@ -90,8 +117,11 @@ class MainMenuView(QWidget):
         sideBarLayout.addWidget(self.btnUser, 5, 0)
         sideBarLayout.addWidget(self.btnLogOut, 6, 0, QtCore.Qt.AlignBottom)
 
+        layoutRightTitle.addWidget(self.btnnotification)
+        layoutRightTitle.addWidget(profile)
+
         headerLayout.addWidget(self.hakAkses, 0, 0, QtCore.Qt.AlignLeft)
-        headerLayout.addWidget(profile, 0, 2, QtCore.Qt.AlignRight)
+        headerLayout.addLayout(layoutRightTitle, 0, 2, QtCore.Qt.AlignRight)
 
         frameLayout.addLayout(frameLayoutLeft)
         frameLayout.addLayout(frameLayoutRight)
@@ -102,10 +132,20 @@ class MainMenuView(QWidget):
 
         frameLayoutRight.addWidget(lbllogo)
 
+        layoutPemeriksaan.addWidget(lblPemeriksaan)
+        layoutPemeriksaan.addWidget(lblPemeriksaanjudul)
+        layoutPemeriksaan.addWidget(self.btnPemeriksaan)
+
+        layoutTransaksi.addWidget(lblTransaksi)
+        layoutTransaksi.addWidget(lblTransaksijudul)
+        layoutTransaksi.addWidget(self.btnTransaksi)
+
         layoutUtama = QGridLayout()
         layoutUtama.addWidget(frameSideBar, 0, 0, 6, 1, QtCore.Qt.AlignLeft)
         layoutUtama.addWidget(frameTitle, 0, 1, 1, 9, QtCore.Qt.AlignTop)
-        layoutUtama.addWidget(frameDashboard, 1, 1, 5, 9, QtCore.Qt.AlignTop)
+        layoutUtama.addWidget(frameDashboard, 1, 1, 3, 9, QtCore.Qt.AlignTop)
+        layoutUtama.addWidget(framePemeriksaan, 4, 1, 2, 2)
+        layoutUtama.addWidget(frameTransaksi, 4, 3, 2, 2)
         layoutUtama.setSpacing(10)
         self.setLayout(layoutUtama)
 

@@ -7,7 +7,7 @@ from View.ReuseComponent.EditLineReuse import EditLineReuse
 from View.ReuseComponent.QComboBoxReuse import QComboBoxReuse
 from View.ReuseComponent.QFrameReuse import QFrameReuse
 from View.ReuseComponent.QLabelReuse import QLabelReuse
-from View.ReuseComponent.QPushButtonReuseTwo import QPushButtonReuseTwo
+from View.ReuseComponent.QPushButtonReuse import QPushButtonReuse
 
 
 class FormView(QDialog):
@@ -50,7 +50,7 @@ class FormView(QDialog):
         lbltanggalLahir.setFont(self.font)
         self.dateTglLahir = QDateEdit()
         self.dateTglLahir.setStyleSheet("border : 0;\n"
-                                        "outline : 0;\n"                                        
+                                        "outline : 0;\n"
                                         "border-bottom : 2px solid rgb(0, 85, 255);")
         self.dateTglLahir.setDisplayFormat("dd - MMM - yyyy")
         self.dateTglLahir.setCalendarPopup(True)
@@ -72,16 +72,26 @@ class FormView(QDialog):
         lblnoHp.setFont(self.font)
         self.txtnoHp = EditLineReuse("+62")
 
-        # ======== ADD DATA ===========
-        self.btnTambah = QPushButtonReuseTwo("", "assets/img/button.png")
+        # ======== CRUD BUTTON ===========
+        frameCrudSection = QFrameReuse("white")
+        frameCrudSection.setContentsMargins(5, 5, 5, 5)
+
+        layoutCrudSection = QHBoxLayout(frameCrudSection)
+
+        self.btnTambah = QPushButtonReuse("", "assets/img/button.png")
         self.btnTambah.setStyleSheet("background-color : rgb(0, 85, 255);\n"
                                      "height : 80%;\n")
         self.btnTambah.setIconSize(QtCore.QSize(75, 54))
 
+        self.btnView = QPushButtonReuse("", "assets/img/view62.png")
+        self.btnView.setStyleSheet("background-color : rgb(0, 85, 255);\n"
+                                   "height : 80%;\n")
+        self.btnView.setIconSize(QtCore.QSize(75, 54))
+
         # ======== LAYOUT SECTION ======
         self.layoutUtama.addWidget(framelayout1, 0, 0, 1, 9, Qt.AlignTop)
         self.layoutUtama.addWidget(framelayout2, 2, 0, 1, 9)
-        self.layoutUtama.addWidget(self.btnTambah, 5, 0, 1, 9, Qt.AlignBottom | Qt.AlignRight)
+        self.layoutUtama.addWidget(frameCrudSection, 5, 0, 1, 9, Qt.AlignBottom | Qt.AlignRight)
         self.layoutUtama.setContentsMargins(35, 35, 35, 35)
 
         layout1.addWidget(lbljudul, 0, 0, 1, 3, Qt.AlignLeft)
@@ -97,6 +107,9 @@ class FormView(QDialog):
         layout2.addWidget(lbljudul2, 0, 0, 1, 3, Qt.AlignLeft)
         layout2.addWidget(lblnoHp, 1, 0, 1, 3, Qt.AlignLeft)
         layout2.addWidget(self.txtnoHp, 2, 0, 2, 3)
+
+        layoutCrudSection.addWidget(self.btnView)
+        layoutCrudSection.addWidget(self.btnTambah)
 
         self.setLayout(self.layoutUtama)
         self.show()

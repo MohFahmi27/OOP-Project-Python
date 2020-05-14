@@ -7,6 +7,7 @@ engine = create_engine('sqlite:///puskesmas.Database')
 
 _SessionFactory = sessionmaker(bind=engine)
 
+connection = engine.connect()
 
 def sessionFactory():
     Base.metadata.create_all(engine)

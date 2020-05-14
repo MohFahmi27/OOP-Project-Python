@@ -1,5 +1,7 @@
 from sqlalchemy import Column, String, Integer, Enum
-from Database.base import Base, sessionFactory
+import sqlalchemy as db
+
+from Database.base import Base, sessionFactory, connection
 from Class.HakAkses import HakAkses
 
 
@@ -20,13 +22,22 @@ class UserOrm(Base):
     def showUser():
         try:
             session = sessionFactory()
+            result = []
             for user in session.query(UserOrm).all():
-                print("Id User = {}, Username = {}, Password = {}, Hak Akses = {}".format(user.id, user.username,
-                                                                                          user.password,
-                                                                                          user.hak_akses))
+                # print("Id User = {}, Username = {}, Password = {}, Hak Akses = {}".format(user.id, user.username,
+                #                                                                           user.password,
+                #                                                                           user.hak_akses))
+                result.append((user.id, str(user.username), str(user.password), str(user.hak_akses)))
+            return result
             session.close()
         except Exception as e:
             print("===>", e)
+
+    @staticmethod
+    def showUserContent():
+        result = connection.execute(db.select([UserOrm])).fetchall()
+        return result
+
 
     @staticmethod
     def insertUser(user):

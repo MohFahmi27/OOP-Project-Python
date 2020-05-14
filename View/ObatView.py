@@ -11,7 +11,7 @@ from View.ReuseComponent.EditLineReuse import EditLineReuse
 from View.ReuseComponent.QComboBoxReuse import QComboBoxReuse
 from View.ReuseComponent.QFrameReuse import QFrameReuse
 from View.ReuseComponent.QLabelReuse import QLabelReuse
-from View.ReuseComponent.QPushButtonReuseTwo import QPushButtonReuseTwo
+from View.ReuseComponent.QPushButtonReuse import QPushButtonReuse
 
 
 class ObatView(QDialog):
@@ -45,10 +45,10 @@ class ObatView(QDialog):
         lbljenisObat.setFont(self.font)
         self.cmbJenisObat = QComboBoxReuse()
         self.cmbJenisObat.addItems(['SERBUK', 'TABLET', 'PIL', 'KAPSUL',
-                                       'SYRUP', 'SALEP', 'INJEKSI'])
+                                    'SYRUP', 'SALEP', 'INJEKSI'])
         self.pilJenObat = [JenisObat.SERBUK, JenisObat.TABLET, JenisObat.PIL,
-                         JenisObat.KAPSUL, JenisObat.SYRUP,
-                         JenisObat.SALEP, JenisObat.INJEKSI]
+                           JenisObat.KAPSUL, JenisObat.SYRUP,
+                           JenisObat.SALEP, JenisObat.INJEKSI]
 
         # ======== SECOND LAYOUT =======
         framelayout2 = QFrameReuse("white")
@@ -70,7 +70,7 @@ class ObatView(QDialog):
         self.txtlokasiObat = EditLineReuse("")
 
         # ======== ADD DATA ===========
-        self.btnTambah = QPushButtonReuseTwo("", "assets/img/button.png")
+        self.btnTambah = QPushButtonReuse("", "assets/img/button.png")
         self.btnTambah.setStyleSheet("background-color : rgb(0, 85, 255);\n"
                                      "height : 80%;\n")
         self.btnTambah.setIconSize(QtCore.QSize(75, 54))
@@ -118,7 +118,7 @@ class ObatView(QDialog):
             msg.setWindowTitle("GAGAL")
             msg.exec_()
         else:
-            try :
+            try:
                 idObat = ObatOrm.findLatest()
                 inv = InventarisObat(idObat, self.stockObat, self.hargaObat, self.lokasi)
                 InventarisObatOrm.insertInvenObat(inv)
@@ -144,5 +144,3 @@ class ObatView(QDialog):
         self.txtlokasiObat.setText("")
         self.txthargaObat.setText("")
         self.txtnamaObat.setFocus()
-
-
