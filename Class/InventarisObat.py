@@ -43,10 +43,6 @@ class InventarisObat():
     def lokasi(self, lokasi):
         self.__lokasi = lokasi
 
-
-
-
-
 # paracetamol = Obat(JenisObat.SERBUK, "PuyerWal")
 # paracetamol.insertObat()
 # Obat.showObat()

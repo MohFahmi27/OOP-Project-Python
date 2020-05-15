@@ -31,16 +31,11 @@ class UserOrm(Base):
 
     @staticmethod
     def insertUser(user):
-        try:
-            session = sessionFactory()
-            userOrm = UserOrm(user.username, user.password, user.hakAkses)
-            session.add(userOrm)
-            session.commit()
-            session.close()
-        except Exception as e:
-            print("===>", e)
-        else:
-            print("Data Berhasil Disimpan!")
+        session = sessionFactory()
+        userOrm = UserOrm(user.username, user.password, user.hakAkses)
+        session.add(userOrm)
+        session.commit()
+        session.close()
 
     @staticmethod
     def updateUserPass(idUser):

@@ -4,6 +4,7 @@ from PyQt5 import QtCore, QtGui
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import *
 
+from Class.HakAkses import HakAkses
 from Database.Orm.PemeriksaanOrm import PemeriksaanOrm
 from View.ReuseComponent.QFrameReuse import QFrameReuse
 from View.ReuseComponent.QLabelReuse import QLabelReuse
@@ -92,8 +93,8 @@ class MainMenuView(QWidget):
         lbllogo.setPixmap(QtGui.QPixmap("assets/img/medical256.png"))
         lbllogo.setAlignment(QtCore.Qt.AlignRight)
 
-        framePemeriksaan = QFrameReuse("white")
-        layoutPemeriksaan = QVBoxLayout(framePemeriksaan)
+        self.framePemeriksaan = QFrameReuse("white")
+        layoutPemeriksaan = QVBoxLayout(self.framePemeriksaan)
         layoutPemeriksaan.setContentsMargins(45, 45, 45, 45)
 
         lblPemeriksaan = QLabelReuse("", "")
@@ -103,8 +104,8 @@ class MainMenuView(QWidget):
         lblPemeriksaanjudul.setAlignment(QtCore.Qt.AlignCenter)
         self.btnPemeriksaan = QPushButtonReuse("Get Started", "")
 
-        frameTransaksi = QFrameReuse("white")
-        layoutTransaksi = QVBoxLayout(frameTransaksi)
+        self.frameTransaksi = QFrameReuse("white")
+        layoutTransaksi = QVBoxLayout(self.frameTransaksi)
         layoutTransaksi.setContentsMargins(45, 45, 45, 45)
 
         lblTransaksi = QLabelReuse("", "")
@@ -153,9 +154,10 @@ class MainMenuView(QWidget):
         layoutUtama.addWidget(frameSideBar, 0, 0, 6, 1, QtCore.Qt.AlignLeft)
         layoutUtama.addWidget(frameTitle, 0, 1, 1, 9, QtCore.Qt.AlignTop)
         layoutUtama.addWidget(frameDashboard, 1, 1, 3, 9, QtCore.Qt.AlignTop)
-        layoutUtama.addWidget(framePemeriksaan, 4, 1, 2, 2, QtCore.Qt.AlignHCenter)
-        layoutUtama.addWidget(frameTransaksi, 4, 3, 2, 2, QtCore.Qt.AlignHCenter)
+        layoutUtama.addWidget(self.framePemeriksaan, 4, 1, 2, 2, QtCore.Qt.AlignHCenter)
+        layoutUtama.addWidget(self.frameTransaksi, 4, 3, 2, 2, QtCore.Qt.AlignHCenter)
         layoutUtama.setSpacing(10)
+        self.hakAksesVisible()
         self.setLayout(layoutUtama)
 
     @pyqtSlot()
@@ -213,3 +215,24 @@ class MainMenuView(QWidget):
         self.notifView = notificationView()
         self.notifView.show()
         self.notifView.exec_()
+
+    def hakAksesVisible(self):
+        hakAkses = self.hakAkses.text()
+        if (hakAkses == str(HakAkses.DOKTER)):
+            self.btnUser.setVisible(False)
+            self.btnObat.setVisible(False)
+            self.btnApoteker.setVisible(False)
+            self.btnDokter.setVisible(False)
+            self.btnPasien.setVisible(False)
+            self.framePemeriksaan.setVisible(False)
+            self.frameTransaksi.setVisible(False)
+        elif (hakAkses == str(HakAkses.APOTEKER)):
+            self.btnUser.setVisible(False)
+            self.btnnotification.setVisible(False)
+            self.btnApoteker.setVisible(False)
+            self.btnDokter.setVisible(False)
+            self.btnPasien.setVisible(False)
+            self.framePemeriksaan.setVisible(False)
+            self.frameTransaksi.setVisible(False)
+        else:
+            self.btnnotification.setVisible(False)
